@@ -1,0 +1,215 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="../src/css/style.css"/>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/jquery.tablesorter.min.js"></script>
+
+<script>
+
+var rectColor = '#f00';
+
+function setUp(){
+  var state = "${state}";
+  loadImage($('#A')[0],'../browsers/firefox/screenshots/state9.png');
+  loadImage($('#B')[0],'../browsers/ie/screenshots/state9.png');
+
+  //loadDiff();
+  $('#dA').scroll(function(){
+	$('#dB').scrollTop(this.scrollTop);
+	$('#dB').scrollLeft(this.scrollLeft);
+  });
+  $('#dB').scroll(function(){
+        $('#dA').scrollTop(this.scrollTop);
+        $('#dA').scrollLeft(this.scrollLeft);
+  });
+
+}
+	 
+// Load image into canvas
+function loadImage(canvas, image_url, callback){
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = image_url;
+  img.onload = function(){
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img,0,0);
+    if(callback){ callback(); }
+  }
+}
+//Load cross browser difference on right side
+function loadDiff_ref(x0,y0,w,h){
+  var ctx = $('#A')[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+  }
+
+}
+//Load cross browser difference on right side
+function loadDiff(id,x0,y0,w,h){
+  var ctx = $(id)[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+	}
+}
+
+function draw4Coords(c1, c1a, c2, c2a) {
+  //clear
+  setUp();
+  
+  setTimeout(function () {
+	  //draw src nodes
+	  rectColor = '#f00';
+	  drawCoords("#A", c1); drawCoords("#B", c2);
+	  
+	  //draw tgt nodes
+	  rectColor = '#0f0';
+	  drawCoords("#A", c1a); drawCoords("#B", c2a);
+  }, 100);
+  
+}
+
+function drawCoords(id, temp){
+
+	if(temp == "(null)") return;
+
+	var x0=new Array();
+	var y0=new Array();
+	var w=new Array();
+	var h=new Array();
+	while(temp.indexOf('(')!=-1){
+		var currNo=temp.indexOf('(')+1;
+		var comma=temp.indexOf(',');
+		var x0Val=temp.substring(currNo,comma);
+		temp=temp.substring(comma+1,temp.length);
+		//alert(temp);
+		comma=temp.indexOf(',');
+		var y0Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		comma=temp.indexOf(',');
+		var x1Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		var width=x1Val-x0Val;	
+		comma=temp.indexOf(',');
+		var y1Val=temp.substring(0,temp.indexOf(')'));
+		var height=y1Val-y0Val;	
+		x0.push(x0Val);
+		y0.push(y0Val);
+		w.push(width);
+		h.push(height);
+	}
+	loadDiff(id, x0,y0,w,h);
+}
+function makeOSkin(){
+	if(document.getElementById("cType").value=='3'){
+		alert("X1XX");
+		mydiv = document.getElementById("dB");
+		mydiv.style.display = "none"; //to hide it
+		var canvas=$('#A')[0];
+		var ctx = canvas.getContext('2d');
+		ctx.globalAlpha = 0.5; 
+		loadImage(canvas,'ie0.png');
+		
+	}
+}
+function showHide(id){
+    $(".r"+id).toggle();
+	$("#i"+id).toggleClass('minus')
+}
+$(document).ready(setUp);
+</script>
+</head>
+<body>
+
+<div id="main">
+
+<div id="dA" style="overflow:scroll;width:50%;height:75%;float:left;">
+<canvas id="A"></canvas>
+</div>
+<div id="dB" style="overflow:scroll;width:50%;height:75%;float:left;">
+
+<!--canvas id="D"></canvas-->
+<canvas id="B"></canvas>
+</div>
+</div>
+<div style="clear:both;"></div>
+<table class="sclbl" style="height:5%">
+  <tr>
+    <th>Mozilla Firefox</th>
+	<th>Internet Explorer</th> 
+  </tr>
+
+</table>
+<div style="height:20%;width:100%;overflow-y:scroll">
+<center>
+
+<table id="lResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="150px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="250px">Message</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">Edge1</th>
+<th bgcolor="#CCCCCC">Edge2</th>
+</tr>
+</thead>
+
+
+
+<tr class='cluster'><td id='i1' class='plus' onclick='showHide("1")'></td><td colspan='5'>Layout Issue-1: Element property disruption</td></tr>
+	<tr class='odd r1' style='display:none'>
+	  <td id="item_1_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Vertical middle alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(737, 1241, 857, 1277)","(737, 1227, 857, 1291)","(739, 1207, 859, 1256)","(739, 1193, 859, 1270)");moveMarker("#item_1_1");'>(737, 1241, 857, 1277)-(737, 1227, 857, 1291) 
+	  , (739, 1207, 859, 1256)-(739, 1193, 859, 1270)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[4]/TD[3]/P<-/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[4]/TD[3]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[4]/TD[3]/P<-/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[4]/TD[3]</td>
+		</tr>
+	<tr class='cluster'><td id='i2' class='plus' onclick='showHide("2")'></td><td colspan='5'>Layout Issue-2: Element property disruption</td></tr>
+	<tr class='odd r2' style='display:none'>
+	  <td id="item_2_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Vertical middle alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(737, 2543, 857, 2579)","(737, 2529, 857, 2593)","(739, 2501, 859, 2550)","(739, 2487, 859, 2564)");moveMarker("#item_2_1");'>(737, 2543, 857, 2579)-(737, 2529, 857, 2593) 
+	  , (739, 2501, 859, 2550)-(739, 2487, 859, 2564)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[14]/TD[3]/P<-/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[14]/TD[3]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[14]/TD[3]/P<-/HTML/BODY/TABLE/TBODY/TR[6]/TD/TABLE/TBODY/TR[2]/TD/TABLE/TBODY/TR/TD[2]/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV[4]/TABLE/TBODY/TR[14]/TD[3]</td>
+		</tr>
+	</table>
+
+<table id="visResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="250px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">DOM XPath</th>
+<th bgcolor="#CCCCCC">Distance (EMD)</th>
+</tr>
+</thead>
+
+
+</table>
+<span id="marker">&gt;</span>
+</center>
+</div>
+<script>
+
+function moveMarker(item) {
+  $(item).prepend($("#marker"));
+}
+
+$(document).ready(function() { 
+  $("#lResults").tablesorter(); 
+  $("#visResults").tablesorter(); 
+} 
+); 
+</script>
+</body>
+</html>

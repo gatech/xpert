@@ -1,0 +1,145 @@
+html{
+	font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+}
+.sclbl{
+	width:100%;
+	background-color:#eee;
+}
+.plus{
+    background-image:url('icon_plus.gif');
+	background-repeat:no-repeat;
+	background-position:center;
+}
+
+.minus{
+    background-image:url('icon_minus.gif');
+	background-repeat:no-repeat;
+	background-position:center;
+}
+.hid{
+	display:none;
+}
+div.domcontainer{
+	float: left;
+	width: 50%;
+}
+div.dom{
+	height: 650px;
+	overflow: scroll;
+	margin-right: 0px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+img.screenshot{
+	width: 400px;
+	border: 1px solid black;
+}
+div.errorcontainer{
+	padding-left: 0px;
+}
+table.highlights{
+	border: 1px solid black;
+	cell-spacing: 0px;
+	cell-padding: 5px;
+}
+table.highlights td, th{
+	border-bottom: 1px solid #808080;
+	text-align: left;
+}
+h4{
+	width:100%;
+	background-color:#eee;
+}
+table.header{
+	font-family: tahoma, Arial;
+	font-size: 8pt;
+	width:100%;
+	background-color:#eee;
+}
+table.header td{
+	text-align:center;
+	width:50%;
+}
+.results{
+	width:100%;
+	border-collapse:collapse;
+	border-spacing:0px;
+	font-size:small;
+}
+
+.results .odd{
+  background-color:#eee;
+}
+.results .even{
+  background-color:#fff;
+}
+.results .cluster{
+  background-color:#CCCFFF;
+  font-weight:bold;
+}
+
+.results td{
+	background-color:#CCCFFF;
+  	font-weight:italic;
+  	padding-left: 5px;
+  	font-family: tahoma, Arial;
+	font-size: 8pt;
+}
+.results td:first-child{
+  	padding-left: 0px;
+}
+
+.results th{
+	background-color:#CCCCCC;
+	text-align:left;
+}
+.results th:first-child{
+	width:20px;
+	
+}
+
+body.domdiff{
+	margin: 0px;
+	padding: 0px;
+}
+
+
+/* tables */
+table.tablesorter {
+	font-family:arial;
+	background-color: #CDCDCD;
+	margin:10px 0pt 15px;
+	font-size: 8pt;
+	width: 100%;
+	text-align: left;
+}
+table.tablesorter thead tr th, table.tablesorter tfoot tr th {
+	background-color: #e6EEEE;
+	border: 1px solid #FFF;
+	font-size: 8pt;
+	padding: 4px;
+}
+table.tablesorter thead tr .header {
+	background-image: url(img/bg.gif);
+	background-repeat: no-repeat;
+	background-position: center right;
+	cursor: pointer;
+}
+table.tablesorter tbody td {
+	color: #3D3D3D;
+	padding: 4px;
+	background-color: #FFF;
+	vertical-align: top;
+}
+table.tablesorter tbody tr.odd td {
+	background-color:#F0F0F6;
+}
+table.tablesorter thead tr .headerSortUp {
+	background-image: url(img/asc.gif);
+}
+table.tablesorter thead tr .headerSortDown {
+	background-image: url(img/desc.gif);
+}
+table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSortUp {
+background-color: #8dbdd8;
+}

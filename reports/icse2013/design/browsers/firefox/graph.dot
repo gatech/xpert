@@ -1,0 +1,33 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  10;
+  1 -> 2 [label = ""About" A: href="/about/whatwedo.html" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/UL[1]/LI[1]/A[1]"];
+  2 -> 1 [label = "IMG: alt="" border="0" height="25" id="tab_home_off3" name="tab_home_off3" src="../media/tabs/tab_home_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/A[1]/IMG[1]"];
+  2 -> 3 [label = "IMG: alt="" border="0" height="25" id="tab_projects_off3" name="tab_projects_off3" src="../media/tabs/tab_projects_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/A[1]/IMG[1]"];
+  2 -> 4 [label = "IMG: alt="" border="0" height="25" id="tab_publications_off3" name="tab_publications_off3" src="../media/tabs/tab_publications_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[3]/A[1]/IMG[1]"];
+  2 -> 5 [label = "IMG: alt="" border="0" height="25" id="tab_fellowships_off3" name="tab_fellowships_off3" src="../media/tabs/tab_fellowships_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[4]/A[1]/IMG[1]"];
+  5 -> 4 [label = "IMG: alt="" border="0" height="25" id="tab_publications_off3" name="tab_publications_off3" src="../media/tabs/tab_publications_off_r.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[3]/A[1]/IMG[1]"];
+  5 -> 6 [label = "IMG: alt="" border="0" height="25" id="tab_partners_off3" name="tab_partners_off3" src="../media/tabs/tab_partners_off_l.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[5]/A[1]/IMG[1]"];
+  6 -> 5 [label = "IMG: alt="" border="0" height="25" id="tab_fellowships_off3" name="tab_fellowships_off3" src="../media/tabs/tab_fellowships_off_r.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[4]/A[1]/IMG[1]"];
+  6 -> 7 [label = "IMG: alt="" border="0" height="25" id="tab_events_off5" name="tab_events_off5" src="../media/tabs/tab_events_off_l.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[6]/A[1]/IMG[1]"];
+  7 -> 6 [label = "IMG: alt="" border="0" height="25" id="tab_partners_off3" name="tab_partners_off3" src="../media/tabs/tab_partners_off_r.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[5]/A[1]/IMG[1]"];
+  2 -> 6 [label = "IMG: alt="" border="0" height="25" id="tab_partners_off3" name="tab_partners_off3" src="../media/tabs/tab_partners_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[5]/A[1]/IMG[1]"];
+  2 -> 7 [label = "IMG: alt="" border="0" height="25" id="tab_events_off5" name="tab_events_off5" src="../media/tabs/tab_events_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[6]/A[1]/IMG[1]"];
+  1 -> 8 [label = ""DT Council" A: href="/about/council.html" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/UL[1]/LI[2]/A[1]"];
+  1 -> 9 [label = ""Press" A: href="/about/press.html" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/UL[1]/LI[4]/A[1]"];
+  1 -> 10 [label = ""Contact" A: href="/about/contact.html" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/UL[1]/LI[5]/A[1]"];
+  1 -> 3 [label = "IMG: alt="" border="0" height="25" id="tab_projects_off3" name="tab_projects_off3" src="media/tabs/tab_projects_off_l.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/A[1]/IMG[1]"];
+  1 -> 4 [label = "IMG: alt="" border="0" height="25" id="tab_publications_off3" name="tab_publications_off3" src="media/tabs/tab_publications_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[3]/A[1]/IMG[1]"];
+  1 -> 5 [label = "IMG: alt="" border="0" height="25" id="tab_fellowships_off3" name="tab_fellowships_off3" src="media/tabs/tab_fellowships_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[4]/A[1]/IMG[1]"];
+  1 -> 6 [label = "IMG: alt="" border="0" height="25" id="tab_partners_off3" name="tab_partners_off3" src="media/tabs/tab_partners_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[5]/A[1]/IMG[1]"];
+  1 -> 7 [label = "IMG: alt="" border="0" height="25" id="tab_events_off5" name="tab_events_off5" src="media/tabs/tab_events_off.gif" width="100" click xpath /HTML[1]/BODY[1]/DIV[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[6]/A[1]/IMG[1]"];
+}
+

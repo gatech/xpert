@@ -1,0 +1,69 @@
+<html>
+	<head>
+	<title>Overview: index</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt;}
+	</style>
+	<script>
+	function disablePreviousStateBtn() {
+  
+      if(parent.isStackEmpty())
+         document.getElementById("previousStateBtn").disabled = true;
+      else 
+        document.getElementById("previousStateBtn").disabled = false;
+    }
+	
+	</script>
+	</head>
+<body onLoad="disablePreviousStateBtn();">
+<div style="height: 28px">
+   <input type="button" id="previousStateBtn" onclick="parent.showPreviousState();" value="Previous State"/>
+   <span style="margin-left: 20px;">
+		Legend:&nbsp;
+		<span style="background: green;">&nbsp;New state&nbsp;</span>&nbsp;&nbsp;		
+		<span style="background: orange;">&nbsp;No state change&nbsp;</span>
+	</span>
+</div>
+<img border='0' src='../../screenshots/state1.png' />
+<div style="position: absolute; z-index: 10; left: 173px; top: 83px; width: 7px; height: 3px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 178px; top: 56px; width: 101px; height: 30px; border: 2px solid #00FFFF;  cursor: pointer;" onclick="parent.pushStack();location.href='index.html'"></div>
+<div style="position: absolute; z-index: 10; left: 277px; top: 56px; width: 101px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 376px; top: 56px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state2.html'"></div>
+<div style="position: absolute; z-index: 20; left: 475px; top: 56px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state3.html'"></div>
+<div style="position: absolute; z-index: 20; left: 574px; top: 56px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state4.html'"></div>
+<div style="position: absolute; z-index: 20; left: 673px; top: 56px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state5.html'"></div>
+<div style="position: absolute; z-index: 20; left: 772px; top: 56px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state6.html'"></div>
+<div style="position: absolute; z-index: 10; left: 935px; top: 27px; width: 202px; height: 53px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 182px; top: 107px; width: 3px; height: 8px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 182px; top: 117px; width: 115px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state13.html'"></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -1px; top: 19px; width: 2px; height: 2px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 317px; top: 117px; width: 562px; height: 32px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 164px; top: 90px; width: 7px; height: 3px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 169px; top: 63px; width: 101px; height: 30px; border: 2px solid #00FFFF;  cursor: pointer;" onclick="parent.pushStack();location.href='index.html'"></div>
+<div style="position: absolute; z-index: 10; left: 268px; top: 63px; width: 101px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 367px; top: 63px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state2.html'"></div>
+<div style="position: absolute; z-index: 20; left: 466px; top: 63px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state3.html'"></div>
+<div style="position: absolute; z-index: 20; left: 565px; top: 63px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state4.html'"></div>
+<div style="position: absolute; z-index: 20; left: 664px; top: 63px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state5.html'"></div>
+<div style="position: absolute; z-index: 20; left: 763px; top: 63px; width: 101px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state6.html'"></div>
+<div style="position: absolute; z-index: 10; left: 926px; top: 34px; width: 202px; height: 53px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 173px; top: 121px; width: 3px; height: 8px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 173px; top: 134px; width: 115px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state13.html'"></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: -3px; top: 17px; width: 115px; height: 30px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 308px; top: 124px; width: 562px; height: 32px; border: 2px solid orange;  " ></div>
+<script type="text/javascript"> 
+parent.updateState("state1");
+</script>
+</body></html>

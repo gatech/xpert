@@ -1,0 +1,40 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  10;
+  11;
+  12;
+  13;
+  14;
+  15;
+  16;
+  17;
+  18;
+  19;
+  1 -> 2 [label = ""Most Requested" A: href="/trips.php?MostRequested" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/A[1]"];
+  1 -> 3 [label = ""What's New" A: href="/trips.php?WhatsNew" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/A[2]"];
+  1 -> 4 [label = ""Trip Diaries" A: href="/trip-diaries.php" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/A[3]"];
+  1 -> 5 [label = ""Brochure Request" A: href="/brochure-request.php" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/A[5]"];
+  1 -> 6 [label = ""Online Reservation" A: href="/booking.php" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[1]/DIV[1]/A[6]"];
+  1 -> 7 [label = ""France" A: href="/region/france/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[1]/A[1]"];
+  1 -> 8 [label = ""Italy" A: href="/region/italy/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[2]/A[1]"];
+  1 -> 9 [label = ""United Kingdom" A: href="/region/united-kingdom/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[3]/A[1]"];
+  1 -> 10 [label = ""Spain" A: href="/region/spain/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[4]/A[1]"];
+  1 -> 11 [label = ""Portugal" A: href="/region/portugal/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[5]/A[1]"];
+  1 -> 12 [label = ""Central/Northern Europe" A: href="/region/central/northern-europe/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[6]/A[1]"];
+  1 -> 13 [label = ""North Africa and The Middle East" A: href="/region/north-africa-and-the-middle-east/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[7]/A[1]"];
+  1 -> 14 [label = ""Eastern Mediterranean" A: href="/region/eastern-mediterranean/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[8]/A[1]"];
+  1 -> 15 [label = ""Switzerland" A: href="/region/switzerland/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[9]/A[1]"];
+  1 -> 16 [label = ""South America" A: href="/region/south-america/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[10]/A[1]"];
+  1 -> 17 [label = ""Latin American, The Caribbean, Bermuda and West Indies" A: href="/region/latin-american,-the-caribbean,-bermuda-and-west-indies/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[11]/A[1]"];
+  1 -> 18 [label = ""South Africa" A: href="/region/south-africa/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[12]/A[1]"];
+  1 -> 19 [label = ""Ireland" A: href="/region/ireland/" click xpath /HTML[1]/BODY[1]/DIV[2]/DIV[1]/DIV[3]/DIV[2]/UL[1]/LI[13]/A[1]"];
+}
+

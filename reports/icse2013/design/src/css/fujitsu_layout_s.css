@@ -1,0 +1,641 @@
+@charset "utf-8";
+
+/* --------------------------------------------------------------------
+
+# FUJITSU CSS v1.0 -- FUJITSU.COM EDITION #
+
+Copyright 2004 FUJITSU LIMITED
+
+-------------------------------------------------------------------- */
+
+
+/*---------------- Resetting default margin of GIG4 initialize.css ----------------*/
+.maincontents { font-family: Arial, Verdana, sans-serif; font-size: 100%; }
+
+h1,h2,h3,h4,h5,h6,p,address,cite,pre { margin-bottom: 0px;} /* xhtml text element modules */
+ul,ol,dl { margin-bottom: 0px; } /* xhtml list(parent) modules */
+li,dt,dd { margin-bottom: 0px; } /* xhtml list(children) modules */
+li ul,li ol,dd dl { margin-bottom: 0px; } /* xhtml list module nesting */
+table { margin-bottom: 0px; } /* xhtml table module */
+form,textarea,fieldset { margin-bottom: 0px; } /* xhtml form module */
+.maincontents table { margin-bottom: 0px; }
+.maincontents li, .maincontents dt, .maincontents dd { line-height: 1.2; }
+
+
+
+/* (0) GIG3.2 layout fix -------------------------------------------------------- */
+
+img { vertical-align: baseline; }
+.submenu img { margin-bottom: 0; }
+/*.submenu p { margin-top: 10px; }*/
+
+
+/* (1) page format -------------------------------------------------------- */
+
+.contentsarea { width: 772px; }
+.maincontents { width: 565px; margin-top: -10px; }
+
+	div#changelanguage {
+	clear: left;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+	text-align: left;
+	}
+	div#changelanguage.textright{
+	text-align: right;
+	}
+	#changelanguage ul {
+	list-style: none;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+	}
+	#changelanguage li {
+	display: inline;
+	border-style: none;
+	margin: 0px 0px 0px 0px;
+	padding: 4px 4px 4px 0px;
+	font-size: 85%;
+	}
+/* v3.2 Language Changer Elements */
+	#changelanguage li a img {
+	border-style: none;
+	margin: 0px 0px 3px 0px;
+	padding: 0px;
+	}
+/* v3.2 Language Changer Elements */
+
+/* (2) media all (alternative) -------------------------------------------------------- */
+
+hr.clear { clear: both; width: 100%; height: 1px; border-style: none; margin: 0px; padding: 0px; color: #ffffff; background: none; }
+
+fieldset { border-style: solid; border-width: 1px; border-color: #cccccc; margin: 0px; margin: 1em 0px 0px 0px; padding: 10px; }
+
+
+
+/* (3) media all (contents) -------------------------------------------------------- */
+
+
+
+/* 3-1 alternative */
+
+.maincontents h1 { clear: both; margin: 10px 0px 0px 0px; padding: 0px; font-size: 140%;  }
+.maincontents h2 { clear: both; margin: 1.5em 0px 0px 0px; padding: 0px; font-size: 120%; }
+.maincontents h3 { clear: both; margin: 1.5em 0px 0px 0px; padding: 0px; font-size: 110%; }
+.maincontents h4 { clear: both; margin: 1.5em 0px 0px 0px; padding: 0px; font-size: 100%; }
+.maincontents h5 { clear: both; margin: 1.5em 0px 0px 0px; padding: 0px; font-size: 90%; }
+.maincontents h6 { clear: both; margin: 1.5em 0px 0px 0px; padding: 0px; font-size: 84%; }
+
+.maincontents a img { border-style: solid; border-width: 1px; }
+
+.maincontents hr.line010 { height: 1px; border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cccccc; background: none; color: #cccccc; margin-top: 0.5em; /*<-added for GIG3 migration*/ }
+.maincontents hr.line020 { height: 1px; border-style: solid; border-width: 0px 0px 1px 0px; border-color: #666666; background: none; color: #666666; margin-top: 0.5em; /*<-added for GIG3 migration*/ }
+
+.maincontents p { margin: 0.5em 0px 0px 0px; padding: 0px; line-height: 120%; }
+
+.maincontents li { border-style: none; margin: 0px 0px 0.5em 0px; padding: 0px; }
+.maincontents ol { list-style: decimal outside; border-style: none; margin: 0px; padding: 0.5em 0px 0.5em 40px; }
+	.maincontents li ol { list-style: upper-alpha outside; border-style: none; }
+	.maincontents li li ol { list-style: lower-alpha outside; }
+.maincontents ul { list-style: disc outside; border-style: none; margin: 0px; padding: 0.5em 0px 0.5em 40px; }
+	.maincontents li ul { list-style: circle outside; border-style: none; }
+	.maincontents li li ul { list-style: square outside; }
+.maincontents dl { border-style: none; margin: 0.5em 0px 0px 0px; padding: 0px 0px 0px 0px; }
+	.maincontents dt { border-style: none; }
+	.maincontents dd { border-style: none; margin: 0.5em 0px 0px 0px; padding: 0px 0px 0px 40px; }
+
+.maincontents .compact li { border-style: none; margin-left: 1.8em; }
+.maincontents ul.compact { list-style-position: outside; border-style: none; padding-left: 0px; }
+.maincontents ol.compact { list-style-position: outside; border-style: none; padding-left: 0px; }
+
+
+
+/* 3-2 substitute */
+
+.maincontents  .textsmall { font-size: 85%; }
+
+.maincontents  .textindent { text-indent: 1em; }
+.maincontents  .breakword {  }
+
+.maincontents .textleft { text-align: left; }
+.maincontents .textright { text-align: right; }
+.maincontents .textcenter { text-align: center; }
+
+.maincontents .alignleft { float: left; }
+.maincontents .alignright { float: right; }
+
+.maincontents .clearleft { clear: left; }
+.maincontents .clearright { clear: right; }
+.maincontents .clearall { clear: both; }
+
+.maincontents .vtop { vertical-align: text-top; }
+.maincontents .vmiddle { vertical-align: middle; }
+.maincontents .vbottom { vertical-align: text-bottom; }
+
+.maincontents .bordernone { border-style: none; }
+.maincontents .border010 { border: solid 1px #666666; }
+
+
+
+/* 3-3 layout parts */
+
+.maincontents h2.bg010 { position: static; margin: 1em 0px 0px 0px; padding: 2px 5px; background: #e5e5e5; }
+.maincontents h3.bg010 { position: static; margin: 1em 0px 0px 0px; padding: 2px 5px; background: #e5e5e5; }
+.maincontents h4.bg010 { position: static; margin: 1em 0px 0px 0px; padding: 2px 5px; background: #e5e5e5; }
+.maincontents h5.bg010 { position: static; margin: 1em 0px 0px 0px; padding: 2px 5px; background: #e5e5e5; }
+.maincontents h6.bg010 { position: static; margin: 1em 0px 0px 0px; padding: 2px 5px; background: #e5e5e5; }
+	.maincontents h2.bg010relative { position: relative; margin: 1em 0px 0px 0px; padding: 2px 5px 2px 0px; background: #e5e5e5; }
+	.maincontents h3.bg010relative { position: relative; margin: 1em 0px 0px 0px; padding: 2px 5px 2px 0px; background: #e5e5e5; }
+	.maincontents h4.bg010relative { position: relative; margin: 1em 0px 0px 0px; padding: 2px 5px 2px 0px; background: #e5e5e5; }
+	.maincontents h5.bg010relative { position: relative; margin: 1em 0px 0px 0px; padding: 2px 5px 2px 0px; background: #e5e5e5; }
+	.maincontents h6.bg010relative { position: relative; margin: 1em 0px 0px 0px; padding: 2px 5px 2px 0px; background: #e5e5e5; }
+
+.maincontents h2.accent010 { position: static; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 2px; }
+.maincontents h3.accent010 { position: static; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 2px; }
+.maincontents h4.accent010 { position: static; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 2px; }
+.maincontents h5.accent010 { position: static; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 2px; }
+.maincontents h6.accent010 { position: static; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 2px; }
+	.maincontents h2.accent010relative { position: relative; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 0px; }
+	.maincontents h3.accent010relative { position: relative; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 0px; }
+	.maincontents h4.accent010relative { position: relative; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 0px; }
+	.maincontents h5.accent010relative { position: relative; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 0px; }
+	.maincontents h6.accent010relative { position: relative; border-style: solid; border-width: 0px 0px 0px 5px; border-color: #cc0000; padding: 1px 0px 1px 0px; }
+
+.maincontents span.link010 { position: absolute; top: 2px; right: 3px; display: block; font-size: 90%; font-weight: normal; }
+	.maincontents span.link010 a:link { text-decoration: underline; }
+	.maincontents span.link010 a:visited { text-decoration: underline; }
+	.maincontents span.link010 a:hover { text-decoration: underline; }
+	.maincontents span.link010 a:active { text-decoration: underline; }
+
+.maincontents .buttonnewwin img { margin:0px 10px 10px 10px; padding: 0px; border-style:none; }
+
+.maincontents span.bg010inside { display: block; margin-left: 5px; }
+.maincontents span.accent010inside { display: block; margin-left: 2px; }
+
+.maincontents strong.label_q { display: block; width: 1.8em; margin: 0px; padding: 2px; text-align: center; background: #cc0033; color: #ffffff; font-size: 110%; font-weight: bold; }
+.maincontents strong.label_a { display: block; width: 1.8em; margin: 0px; padding: 2px; text-align: center; background: #888888; color: #ffffff; font-size: 110%; font-weight: bold; }
+
+.maincontents strong.icon_pdf { display: inline; background: #cc0033; color: #ffffff; margin: 0px 2px; padding: 2px 3px; font-weight: bold; font-size: 80%; }
+/* .maincontents .textsmall strong.icon_pdf { font-size: 99%; } resetting font size for nesting elements */
+	.maincontents strong.icon_pdf a:link { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_pdf a:visited { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_pdf a:active { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_pdf a:hover { text-decoration: none; color: #ffffff; }
+	.maincontents a strong.icon_pdf { text-decoration: none; color: #ffffff; }
+
+.maincontents strong.icon_compression { display: inline; background: #666666; color: #ffffff; margin: 0px 2px; padding: 2px 3px; font-weight: bold; font-size: 80%; }
+/* .maincontents .textsmall strong.icon_compression { font-size: 99%; } resetting font size for nesting elements */
+	.maincontents strong.icon_compression a:link { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_compression a:visited { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_compression a:active { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_compression a:hover { text-decoration: none; color: #ffffff; }
+	.maincontents a strong.icon_compression { text-decoration: none; color: #ffffff; }
+
+div.innerblock { border-style: none; margin: 0px; padding: 8px; }
+
+div.col1 { padding: 0px; }
+	 div.col1 div.innerblock { border-style: none; margin: 0px 5px; padding: 5px; }
+div.col2 { padding: 0px; }
+	 div.col2 div.innerblock { border-style: none; margin: 0px 5px; padding: 5px; }
+div.col3 { padding: 0px; }
+	 div.col3 div.innerblock { border-style: none; margin: 0px 5px; padding: 5px; }
+
+div.lay2col { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2col div.col1 { float: left; width: 49%; border-style: none; }
+	div.lay2col div.col2 { float: left; width: 49%; border-style: none; }
+div.lay3col { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay3col div.col1 { float: left; width: 33%; border-style: none; }
+	div.lay3col div.col2 { float: left; width: 33%; border-style: none; }
+	div.lay3col div.col3 { float: left; width: 33%; border-style: none; }
+div.lay2colspr { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2colspr div.col1 { float: left; width: 49%; border-style: none; }
+		div.lay2colspr div.col1 div.innerblock { margin: 0px 5px; padding: 0px 5px 5px 5px; }
+	div.lay2colspr div.col2 { float: left; width: 49%; border-style: solid; border-width: 0px 0px 0px 1px; border-color: #cccccc; }
+		div.lay2colspr div.col2 div.innerblock { margin: 0px 5px; padding: 0px 5px 5px 5px; }
+div.lay3colspr { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay3colspr div.col1 { float: left; width: 33%; border-style: none; }
+		div.lay3colspr div.col1 div.innerblock { margin: 0px 5px; padding: 0px 5px 5px 5px; }
+	div.lay3colspr div.col2 { float: left; width: 33%; border-style: solid; border-width: 0px 0px 0px 1px; border-color: #cccccc; }
+		div.lay3colspr div.col2 div.innerblock { margin: 0px 5px; padding: 0px 5px 5px 5px; }
+	div.lay3colspr div.col3 { float: left; width: 33%; border-style: solid; border-width: 0px 0px 0px 1px; border-color: #cccccc; }
+		div.lay3colspr div.col3 div.innerblock { margin: 0px 5px; padding: 0px 5px 5px 5px; }
+div.lay2col-left100px { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2col-left100px div.col1 { float: left; width: 110px; border-style: none; }
+		div.lay2col-left100px div.col1 div.innerblock { margin: 0px; padding: 0px; }
+	div.lay2col-left100px div.col2 { float: left; width: 450px; border-style: none; }
+		div.lay2col-left100px div.col2 div.innerblock { margin: 0px; padding: 0px; }
+div.lay2col-left180px { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2col-left180px div.col1 { float: left; width: 190px; border-style: none; }
+		div.lay2col-left180px div.col1 div.innerblock { margin: 0px; padding: 0px; }
+	div.lay2col-left180px div.col2 { float: left; width: 370px; border-style: none; }
+		div.lay2col-left180px div.col2 div.innerblock { margin: 0px; padding: 0px; }
+/* v3.2 New layout parts */
+div.lay2col-left100px-over { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2col-left100px-over div.col1 { float: left; width: 110px; border-style: none; }
+		div.lay2col-left100px-over div.col1 div.innerblock { margin: 0px; padding: 0px; }
+	div.lay2col-left100px-over div.col2 { float: left; width: 85%; border-style: none; }
+		div.lay2col-left100px-over div.col2 div.innerblock { margin: 0px; padding: 0px; }
+div.lay2col-left180px-over { width: 100%; border-style: none; margin-top: 10px; }
+	div.lay2col-left180px-over div.col1 { float: left; width: 190px; border-style: none; }
+		div.lay2col-left180px-over div.col1 div.innerblock { margin: 0px; padding: 0px; }
+	div.lay2col-left180px-over div.col2 { float: left; width: 74%; border-style: none; }
+		div.lay2col-left180px-over div.col2 div.innerblock { margin: 0px; padding: 0px; }
+/* v3.2 New layout parts */
+
+@media print {
+	div.lay2col div.col1 { width: 100%; }
+	div.lay2col div.col2 { width: 100%; }
+	div.lay3col div.col1 { width: 100%; }
+	div.lay3col div.col2 { width: 100%; }
+	div.lay3col div.col3 { width: 100%; }
+	div.lay2colspr div.col1 { width: 100%; }
+	div.lay2colspr div.col2 { width: 100%; }
+	div.lay3colspr div.col1 { width: 100%; }
+	div.lay3colspr div.col2 { width: 100%; }
+	div.lay3colspr div.col3 { width: 100%; }
+	div.lay2col-left100px div.col2 { width: 100%; }
+	div.lay2col-left180px div.col1 { width: 100%; }
+	div.lay2col-left180px div.col2 { width: 100%; }
+/* v3.2 New layout parts */
+	div.lay2col-left100px-over div.col2 { width: 100%; }
+	div.lay2col-left180px-over div.col2 { width: 100%; }
+/* v3.2 New layout parts */
+}
+
+div.floatbox100px-left { float: left; margin: 0px 16px 5px 0px; padding: 0px; width: 100px; }
+div.floatbox100px-right { float: right; margin: 0px 0px 5px 16px; padding: 0px; width: 100px; }
+div.floatbox180px-left { float: left; margin: 0px 16px 5px 0px; padding: 0px; width: 180px; }
+div.floatbox180px-right { float: right; margin: 0px 0px 5px 16px; padding: 0px; width: 180px; }
+div.floatbox275px-left { float: left; margin: 0px 16px 5px 0px; padding: 0px; width: 275px; }
+div.floatbox275px-right { float: right; margin: 0px 0px 5px 16px; padding: 0px; width: 275px; }
+
+div.frm { border: solid 1px #999999; margin-top: 8px; }
+div.frm-red { border: solid 1px #cc6666; margin-top: 8px; }
+div.frm-blue { border: solid 1px #9999cc; margin-top: 8px; }
+
+div.bfrm { border: solid 2px #cccccc; margin-top: 8px; }
+div.bfrm-red { border: solid 2px #cc6666; margin-top: 8px; }
+div.bfrm-blue { border: solid 2px #9999cc; margin-top: 8px; }
+
+div.frm-bg { border: solid 1px #999999; margin-top: 8px; background: #eeeeee; }
+div.frm-bg-red { border: solid 1px #cc6666; margin-top: 8px; background: #ffeeee; }
+div.frm-bg-blue { border: solid 1px #9999cc; margin-top: 8px; background: #eeeeff; }
+
+div.frm-title { border: solid 1px #999999; margin-top: 8px; }
+	div.frm-title h2.frm-heading { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; margin: 0px; padding: 4px 8px; background: #e5e5e5; }
+	div.frm-title h3.frm-heading { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; margin: 0px; padding: 4px 8px; background: #e5e5e5; }
+	div.frm-title h4.frm-heading { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; margin: 0px; padding: 4px 8px; background: #e5e5e5; }
+	div.frm-title h5.frm-heading { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; margin: 0px; padding: 4px 8px; background: #e5e5e5; }
+	div.frm-title h6.frm-heading { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; margin: 0px; padding: 4px 8px; background: #e5e5e5; }
+	div.frm-title .bg010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; }
+	div.frm-title .accent010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #999999; }
+div.frm-title-red { border: solid 1px #cc6666; margin-top: 8px; }
+	div.frm-title-red h2.frm-heading-red { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; margin: 0px; padding: 4px 8px; background: #ffeeee; }
+	div.frm-title-red h3.frm-heading-red { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; margin: 0px; padding: 4px 8px; background: #ffeeee; }
+	div.frm-title-red h4.frm-heading-red { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; margin: 0px; padding: 4px 8px; background: #ffeeee; }
+	div.frm-title-red h5.frm-heading-red { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; margin: 0px; padding: 4px 8px; background: #ffeeee; }
+	div.frm-title-red h6.frm-heading-red { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; margin: 0px; padding: 4px 8px; background: #ffeeee; }
+	div.frm-title-red .bg010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; }
+	div.frm-title-red .accent010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #cc6666; }
+div.frm-title-blue { border: solid 1px #9999cc; margin-top: 8px; }
+	div.frm-title-blue h2.frm-heading-blue { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; margin: 0px; padding: 4px 8px; background: #eeeeff; }
+	div.frm-title-blue h3.frm-heading-blue { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; margin: 0px; padding: 4px 8px; background: #eeeeff; }
+	div.frm-title-blue h4.frm-heading-blue { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; margin: 0px; padding: 4px 8px; background: #eeeeff; }
+	div.frm-title-blue h5.frm-heading-blue { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; margin: 0px; padding: 4px 8px; background: #eeeeff; }
+	div.frm-title-blue h6.frm-heading-blue { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; margin: 0px; padding: 4px 8px; background: #eeeeff; }
+	div.frm-title-blue div.frm-title-blue .bg010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; }
+	div.frm-title-blue div.frm-title-blue .accent010relative { border-style: solid; border-width: 0px 0px 1px 0px; border-color: #9999cc; }
+
+div.bg { border: solid 1px #ffffff; margin-top: 8px; background: #eeeeee; }
+	div.bg div.lay2col { margin-top: 0px; background: #ffffff; }
+	div.bg div.lay3col { margin-top: 0px; background: #ffffff; }
+	div.bg div.innerblock { background: #eeeeee; }
+div.bg-red { border: solid 1px #ffffff; margin-top: 8px; background: #ffeeee; }
+	div.bg-red div.lay2col { margin-top: 0px; background: #ffffff; }
+	div.bg-red div.lay3col { margin-top: 0px; background: #ffffff; }
+	div.bg-red div.innerblock { background: #ffeeee; }
+div.bg-blue { border: solid 1px #ffffff; margin-top: 8px; background: #eeeeff; }
+	div.bg-blue div.lay2col { margin-top: 0px; background: #ffffff; }
+	div.bg-blue div.lay3col { margin-top: 0px; background: #ffffff; }
+	div.bg-blue div.innerblock { background: #eeeeff; }
+
+div.label-left { position: relative; width: 100%; border: solid 1px white; margin-top: 1em; }
+	div.label-left div.label { position: absolute; z-index: 100; top: 0px; left: 0px; width: 45px; border-style: none; }
+	div.label-left div.label p { margin: 0px; }
+	div.label-left div.innerblock { border-style: none; width: 500px; margin: 0px 0px 0px 50px; padding: 0px; }
+
+
+
+
+/* 3-4 table */
+
+table.standard { border-collapse: collapse; border-spacing: 0px;  border: solid 1px #000000; margin-top: 10px; color: #000000; }
+	table.standard caption { caption-side: top; }
+	table.standard tr { }
+	table.standard tr.even td { background-color: #ffffff; color: #000000; }
+	table.standard tr.odd td { background-color: #eeeeee; color: #000000; }
+	table.standard th { background-color: #666666; color: #000000; border: solid 1px #000000; }
+	table.standard td { background-color: #ffffff; color: #000000; border: solid 1px #000000; }
+	table.standard tr:hover td{ background-color: #cccccc; border: none; cursor: pointer; }
+	
+	table.standard thead { }
+	table.standard thead th { background-color: #666666; color: #ffffff; }
+	table.standard thead td { background-color: #666666; color: #ffffff; }
+	table.standard tfoot { }
+	table.standard tfoot th { background-color: #999999; color: #000000; }
+	table.standard tfoot td { background-color: #999999; color: #000000; }
+	table.standard tbody { }
+	table.standard tbody td { background-color: #ffffff; color: #000000; }
+	table.standard tbody tr:hover { background-color: #red; color: #000000; }
+
+	
+	
+
+div.emphasis table.standard { border: solid 1px #ffffff; }
+div.emphasis table.standard th { border: solid 1px #ffffff; }
+div.emphasis table.standard td { border: solid 1px #ffffff; }
+div.emphasis table.standard tbody td { background-color: #eeeeee; color: #000000; }
+div.emphasis table.standard tr.odd td { background-color: #eeeeee; color: #000000; }
+div.emphasis table.standard tr.even td { background-color: #dddddd; color: #000000; }
+
+div.emphasis020 table.standard { border: solid 1px #000000; }
+div.emphasis020 table.standard th { border: solid 1px #000000; }
+div.emphasis020 table.standard td { border: solid 1px #000000; }
+div.emphasis020 table.standard tbody td { background-color: #eeeeee; color: #000000; }
+div.emphasis020 table.standard tr.odd td { background-color: #eeeeee; color: #000000; }
+div.emphasis020 table.standard tr.even td { background-color: #dddddd; color: #000000; }
+
+div.cv_b { }
+	div.cv_b  tr.odd td { background-color: #ffffff; color: #000000; }
+	div.cv_b  tr.even td { background-color: #ffeeee; color: #000000; }
+	div.cv_b th { background-color: #ffcccc; color: #000000; }
+
+	div.cv_b thead th { background-color: #996666; color: #ffffff; }
+	div.cv_b thead td { background-color: #996666; color: #ffffff; }
+	div.cv_b tfoot th { background-color: #cc9999; color: #000000; }
+	div.cv_b tfoot td { background-color: #cc9999; color: #000000; }
+
+	div.cv_b div.emphasis table tbody td { background-color: #ffeeee; color: #000000; }
+	div.cv_b div.emphasis table tr.odd td { background-color: #ffeeee; color: #000000; }
+	div.cv_b div.emphasis table tr.even td { background-color: #ffdddd; color: #000000; }
+
+	div.cv_b div.emphasis020 table tbody td { background-color: #ffeeee; color: #000000; }
+	div.cv_b div.emphasis020 table tr.odd td { background-color: #ffeeee; color: #000000; }
+	div.cv_b div.emphasis020 table tr.even td { background-color: #ffdddd; color: #000000; }
+
+div.cv_c { }
+	div.cv_c  tr.odd td { background-color: #ffffff; color: #000000; }
+	div.cv_c  tr.even td { background-color: #eeeeff; color: #000000; }
+	div.cv_c th { background-color: #ccccff; color: #000000; }
+
+	div.cv_c thead th { background-color: #666699; color: #ffffff; }
+	div.cv_c thead td { background-color: #666699; color: #ffffff; }
+	div.cv_c tfoot th { background-color: #9999cc; color: #000000; }
+	div.cv_c tfoot td { background-color: #9999cc; color: #000000; }
+
+	div.cv_c div.emphasis table tbody td { background-color: #eeeeff; color: #000000; }
+	div.cv_c div.emphasis table tr.odd td { background-color: #eeeeff; color: #000000; }
+	div.cv_c div.emphasis table tr.even td { background-color: #ddddff; color: #000000; }
+
+	div.cv_c div.emphasis020 table tbody td { background-color: #eeeeff; color: #000000; }
+	div.cv_c div.emphasis020 table tr.odd td { background-color: #eeeeff; color: #000000; }
+	div.cv_c div.emphasis020 table tr.even td { background-color: #ddddff; color: #000000; }
+
+
+/* (4) media all (nav) -------------------------------------------------------- */
+
+
+div.moreinfo {
+clear: both;
+border-style: none;
+margin: 0px;
+padding: 4px 0px 6px 0px;
+}
+	div.moreinfo p {
+	display: block;
+	height: 15px;
+	overflow: visible;
+	border-style: none;
+	margin: 0px;
+	padding: 0px 17px 0px 0px;
+	background: url("imgv3/common/arrow-next.gif") no-repeat right center;
+	text-align: right;
+	font-size: 90%;
+	}
+
+div.contextnavi {
+position: static;
+border-style: none;
+padding: 10px 0px;
+}
+	.contextnavi ul {
+	position: static;
+	display: block;
+	list-style: none;
+	width: 560px;
+	border-style: none;
+	margin: 5px 0px 0px 0px;
+	padding: 0px;
+	text-align: center;
+	}
+	.contextnavi li {
+	position: relative;
+	display: inline;
+	list-style: none;
+	border-style: solid;
+	border-width: 0px 0px 0px 1px;
+	border-color: #999999;
+	margin: 0px;
+	padding: 0px 3px 0px 6px;
+	font-size: 90%;
+	}
+	.contextnavi li.firstchild {
+	border-width: 0px;
+	}
+	.contextnavi a {
+	margin: 0px;
+	}
+
+.maincontents p.navifollowpage { display: block; border: solid white 1px; padding: 10px 0px; text-align: center; font-size: 90%; }
+	p.navifollowpage img { margin-bottom: -2px; text-align: center; }
+	p.navifollowpage a img { border-style: none; }
+.maincontents p.charindex { display: block; border: solid white 1px; padding: 10px 0px; color: #666666; font-size: 90%; line-height: 160% }
+	p.charindex strong { color: #000000; }
+	p.charindex img { margin-bottom: -2px; }
+.maincontents p.wordindex { display: block; border: solid white 1px; padding: 10px 0px; color: #666666; font-size: 90%; line-height: 160% }
+	p.wordindex strong { color: #000000; }
+	p.wordindex img { margin-bottom: -2px; }
+.maincontents p.alsoindex { padding: 0px 0px 0.5em 0px; color: #666666; font-size: 90%; }
+.maincontents p strong.current { color: #000000; font-weight: normal; }
+
+div.stage_newwindow {
+border-style: none;
+width: 95%;
+margin: 15px 0px;
+text-align: left;
+}
+
+div.buttonnewwin {
+text-align: center;
+}
+		.buttonnewwin img {
+		margin: 0px 10px 10px 10px;
+		padding: 0px;
+		border-style: none;
+		}
+
+.maincontents .notice { color: #cc0000; }
+
+/* (5) media aural (nav) -------------------------------------------------------- */
+
+div.navihidden {
+position: absolute;
+z-index: 100;
+top: 0px;
+right: 0px;
+
+width: 1px;
+height: 1px;
+border-style: none;
+margin: 0px;
+padding: 0px;
+overflow: hidden;
+}
+
+.navihidden img {
+vertical-align: bottom;
+}
+
+/* (6) media screen (nav) -------------------------------------------------------- */
+
+
+div.naviscrolltop {
+clear: both;
+border-style: none;
+margin: 0px;
+padding: 4px 0px 6px 0px;
+}
+	div.naviscrolltop p {
+	display: block;
+	overflow: visible;
+	border-style: none;
+	margin: 0px;
+	padding: 0px 17px 0px 0px;
+	background: #ffffff url("imgv3/common/navi-top.gif") no-repeat right center;
+	text-align: right;
+	font-size: 90%;
+	}
+
+div.locationback {
+display: block;
+clear: both;
+width: 100%;
+height: 1.6em;
+border-style: none;
+margin: 0px;
+padding: 4px 0px 0px 0px;
+text-align: right;
+}
+	div.locationback p {
+	display: block;
+	float: right;
+	border-style: none;
+	margin: 0px;
+	padding: 0px;
+	font-size: 90%;
+	}
+	div.locationback a {
+	padding: 0px 0px 0px 20px;
+	background: #ffffff url("imgv3/common/arrow-back.gif") no-repeat left center;
+	}
+
+
+/* (ex) for search -------------------------------------------------------- */
+input.searchresults { border-style: solid; border-width: 1px; border-color: #7f9db9; width: 156px; margin: 0px; padding: 1px 0px; background: #ffffff; vertical-align: middle; }
+input.submitresults { width: 65px; height: 17px; border-style: none; margin: 10px 0px 10px 4px; padding: 0px; vertical-align: middle; }
+h2.searchresults-title { font-weight: normal; }
+div.searchresults-indent { margin-left: 50px; }
+.maincontents .searchresults-data { color: #008000; font-size: 85%; }
+
+/* (ex) for manual & assetinfo -------------------------------------------------------- */
+div.assetinfo { text-align: left; font-size: 108%; }
+
+div.frm-bg-man { position: relative; border: solid 1px #99cc99; margin-top: 8px; background: #eeffee; }
+div.frm-bg-man h2.bg010 { background: #ccffcc; }
+div.frm-bg-man pre { font-size: 90%; }
+div.frm-bg-man strong.man { font-weight: normal; color: #009900; }
+div.frm-bg-man em { font-weight: normal; font-style: normal; color: #cc0066; }
+
+div.frm-bg-man2 { position: relative; border: solid 1px #cccc99; margin-top: 8px; background: #ffffee; }
+div.frm-bg-man2 h2.bg010 { background: #ffffcc; }
+div.frm-bg-man2 pre { font-size: 90%; }
+div.frm-bg-man2 strong.man { font-weight: normal; color: #cc6600; }
+div.frm-bg-man2 em { font-weight: normal; font-style: normal; color: #cc0066; }
+
+div.frm-bg-man3 { position: relative; border: solid 1px #cc99cc; margin-top: 8px; background: #ffeeff; }
+div.frm-bg-man3 h2.bg010 { background: #ffccff; }
+div.frm-bg-man3 pre { font-size: 90%; }
+div.frm-bg-man3 strong.man { font-weight: normal; color: #990099; }
+
+strong.man { font-weight: normal; color: #009900; }
+
+div.contentsarea p.prop { margin-top: 2em; text-align: right; }
+div.contentsarea p.prop strong {
+	display: inline;
+	border: solid #99cc99 1px;
+	background: #eeffee;
+	margin: 0px 2px;
+	padding: 1px 1px 0px 1px;
+	font-weight: normal;
+	}
+
+div.contentsarea strong.opt {
+	display: inline;
+	border: solid #cccc00 1px;
+	background: #ffff00;
+	color: #ff9900;
+	margin: 0px 2px;
+	padding: 1px 1px 0px 1px;
+	font-weight: bold;
+	font-size: 80%;
+	}
+
+/* List Layout 2column -------------------------------------------------------- */
+#listlayout h2.bg010 { font-size: 100%; }
+#listlayout h2.bg010relative { font-size: 100%; }
+#listlayout ul { display: block; list-style: none; border-style: none; width: auto; margin: 0px 0px 1em 0px; padding: 0px; }
+#listlayout li { display: block; list-style: none; border-style: none; width: auto; background: url("imgv3/common/li_dot_lv1.gif") no-repeat 4px 0; font-size: 90%; margin: 0.5em 0px 0px 0px; padding: 0px 0px 0px 20px;  }
+
+.maincontents ul.index-lay2col { display: block; list-style: none; }
+.maincontents ul.index-lay2col li.list-col { height: 1%; display: block; list-style: none; border-style: none;  }
+.maincontents ul.index-lay2col li.list-col p.index-col1 { line-height: 125%; float: left; margin: 0; padding: 0; width: 150px;  }
+.maincontents ul.index-lay2col li.list-col p.index-col2 { line-height: 125%; float: left; margin: 0; padding: 0; width: 388px;  }
+
+/* Common icon for MS Office Application Files ---------------------------------*/
+
+.maincontents strong.icon_doc { display: inline; background: #3366cc; color: #ffffff; margin: 0px 2px; padding: 3px 3px 1px 3px; font-weight: bold; font-size: 80%; }
+	.maincontents strong.icon_doc a:link { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_doc a:visited { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_doc a:active { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_doc a:hover { text-decoration: none; color: #ffffff; }
+	.maincontents a strong.icon_doc { text-decoration: none; color: #ffffff; }
+
+.maincontents strong.icon_xls { display: inline; background: #339933; color: #ffffff; margin: 0px 2px; padding: 3px 3px 1px 3px; font-weight: bold; font-size: 80%; }
+	.maincontents strong.icon_xls a:link { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_xls a:visited { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_xls a:active { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_xls a:hover { text-decoration: none; color: #ffffff; }
+	.maincontents a strong.icon_xls { text-decoration: none; color: #ffffff; }
+
+.maincontents strong.icon_ppt { display: inline; background: #dd5522; color: #ffffff; margin: 0px 2px; padding: 3px 3px 1px 3px; font-weight: bold; font-size: 80%; }
+	.maincontents strong.icon_ppt a:link { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_ppt a:visited { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_ppt a:active { text-decoration: none; color: #ffffff; }
+	.maincontents strong.icon_ppt a:hover { text-decoration: none; color: #ffffff; }
+	.maincontents a strong.icon_ppt { text-decoration: none; color: #ffffff; }
+
+/* (ex) FBF Form -------------------------------------------------------- */
+.form-error{
+	background-color: #ffeeee;
+}

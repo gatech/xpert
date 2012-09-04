@@ -1,0 +1,20 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  1 -> 2 [label = ""Explore Granta Books" A: accesskey="5" href="/page/3013/Explore-Granta-Books" title="Select this link for Explore Granta Books" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[5]/OL[1]/LI[2]/A[1]"];
+  2 -> 3 [label = ""What's New" A: href="/page/3012/Whats-New" title="Discover this month’s new releases from Granta Books and what’s coming up later in the year." click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[4]/OL[1]/LI[2]/OL[1]/LI[1]/A[1]"];
+  2 -> 4 [label = ""Our Authors" A: href="/page/3014/Our-Authors" title="Find out more about your favourite authors and let us introduce you to  exciting new talent from across the list." click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[4]/OL[1]/LI[2]/OL[1]/LI[2]/A[1]"];
+  2 -> 5 [label = ""Essential Granta Books" A: href="/page/3015/Essential-Granta-Books" title="Our regularly updated selection of some of our defining titles and other treasures from the backlist." click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[4]/OL[1]/LI[2]/OL[1]/LI[3]/A[1]"];
+  2 -> 6 [label = ""Search" A: href="/page/3035/Search" title="If you know what you’re looking for, use the search in the top bar of the site and we’ll take you to exactly what you need." click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[4]/OL[1]/LI[2]/OL[1]/LI[4]/A[1]"];
+  1 -> 7 [label = ""About Granta Books" A: accesskey="6" href="/page/3016/About-Granta-Books" title="Select this link for About Granta Books" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[5]/OL[1]/LI[3]/A[1]"];
+  1 -> 8 [label = ""Working with Granta" A: accesskey="7" href="/page/3020/Working-with-Granta" title="Select this link for Working with Granta" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[5]/OL[1]/LI[4]/A[1]"];
+  1 -> 9 [label = ""Contact Us" A: accesskey="8" href="/page/3027/Contact-Us" title="Select this link for Contact Us" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[5]/OL[1]/LI[5]/A[1]"];
+}
+

@@ -1,0 +1,28 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  1 -> 2 [label = ""Presse" A: href="Mobile/DE/Presse/presse_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[2]/A[1]"];
+  2 -> 1 [label = ""Aktuelles" A: href="Mobile/DE/Aktuelles/aktuelles_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[1]/A[1]"];
+  2 -> 3 [label = ""Mediathek" A: href="Mobile/DE/Mediathek/mediathek_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[3]/A[1]"];
+  3 -> 1 [label = ""Aktuelles" A: href="Mobile/DE/Aktuelles/aktuelles_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[1]/A[1]"];
+  3 -> 2 [label = ""Presse" A: href="Mobile/DE/Presse/presse_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[2]/A[1]"];
+  3 -> 4 [label = ""Termine" A: href="Mobile/DE/Termine/termine_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[4]/A[1]"];
+  4 -> 1 [label = ""Aktuelles" A: href="Mobile/DE/Aktuelles/aktuelles_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[1]/A[1]"];
+  4 -> 2 [label = ""Presse" A: href="Mobile/DE/Presse/presse_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[2]/A[1]"];
+  4 -> 3 [label = ""Mediathek" A: href="Mobile/DE/Mediathek/mediathek_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[3]/A[1]"];
+  4 -> 5 [label = ""Themen" A: href="Mobile/DE/Themen/themen_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[5]/A[1]"];
+  5 -> 1 [label = ""Aktuelles" A: href="Mobile/DE/Aktuelles/aktuelles_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[1]/A[1]"];
+  5 -> 2 [label = ""Presse" A: href="Mobile/DE/Presse/presse_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[2]/A[1]"];
+  5 -> 3 [label = ""Mediathek" A: href="Mobile/DE/Mediathek/mediathek_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[3]/A[1]"];
+  5 -> 4 [label = ""Termine" A: href="Mobile/DE/Termine/termine_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[4]/A[1]"];
+  3 -> 5 [label = ""Themen" A: href="Mobile/DE/Themen/themen_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[5]/A[1]"];
+  2 -> 4 [label = ""Termine" A: href="Mobile/DE/Termine/termine_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[4]/A[1]"];
+  2 -> 5 [label = ""Themen" A: href="Mobile/DE/Themen/themen_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[5]/A[1]"];
+  1 -> 3 [label = ""Mediathek" A: href="Mobile/DE/Mediathek/mediathek_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[3]/A[1]"];
+  1 -> 4 [label = ""Termine" A: href="Mobile/DE/Termine/termine_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[4]/A[1]"];
+  1 -> 5 [label = ""Themen" A: href="Mobile/DE/Themen/themen_node.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[4]/DIV[1]/UL[1]/LI[5]/A[1]"];
+}
+

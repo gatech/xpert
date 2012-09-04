@@ -1,0 +1,36 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  10;
+  11;
+  12;
+  13;
+  14;
+  1 -> 2 [label = ""Online Donation (debit/credit card)" A: href="donationnew/default.asp" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/P[1]/SPAN[1]/SPAN[1]/STRONG[1]/A[1]"];
+  1 -> 3 [label = ""Donation on Net banking" A: href="donation/donate/donate.html" style="LINE-HEIGHT: normal; WIDOWS: 2; TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; TEXT-INDENT: 0px; LETTER-SPACING: normal; BORDER-COLLAPSE: separate; FONT-FAMILY: Verdana; WHITE-SPACE: normal; ORPHANS: 2; COLOR: rgb(0,0,0); WORD-SPACING: 0px; TEXT-DECORATION: none; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[2]/TD[2]/STRONG[1]/SPAN[1]/SPAN[1]/A[1]"];
+  1 -> 4 [label = ""Shri Sai Satcharitra Audio in Tamil" A: href="aartis/tamilaudio/satcharitraaudio.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[2]/TD[4]/B[1]/A[1]"];
+  4 -> 1 [label = ""Back" A: href="../../index.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/P[1]/B[1]/A[1]"];
+  1 -> 5 [label = ""Information Centre" A: href="Information_centre.htm" style="LINE-HEIGHT: normal; WIDOWS: 2; TEXT-TRANSFORM: none; FONT-VARIANT: normal; FONT-STYLE: normal; TEXT-INDENT: 0px; LETTER-SPACING: normal; BORDER-COLLAPSE: separate; FONT-FAMILY: Verdana; WHITE-SPACE: normal; ORPHANS: 2; COLOR: rgb(0,0,0); WORD-SPACING: 0px; TEXT-DECORATION: none; -webkit-border-horizontal-spacing: 0px; -webkit-border-vertical-spacing: 0px; -webkit-text-decorations-in-effect: none; -webkit-text-size-adjust: auto; -webkit-text-stroke-width: 0px" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[3]/TD[2]/SPAN[1]/SPAN[1]/STRONG[1]/FONT[1]/SPAN[1]/A[1]"];
+  5 -> 1 [label = ""Back" A: href="index.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/P[1]/FONT[1]/B[1]/A[1]"];
+  1 -> 6 [label = ""Emergency Helpline Numbers" A: href="Helpline.htm" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[4]/TD[2]/B[1]/A[1]"];
+  6 -> 1 [label = ""Back" A: href="index.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/P[5]/B[1]/A[1]"];
+  1 -> 7 [label = ""Shri Sai Satcharitra MahaParayan Sohala (Mumbai) Invitation" A: href="appeal/mahaparayansohala.htm" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[4]/TD[4]/B[1]/A[1]"];
+  7 -> 1 [label = ""Back" A: href="../index.html" style="FONT-WEIGHT: 700; TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/P[2]/A[1]"];
+  1 -> 8 [label = ""An Appeal to Sai Devotees" A: href="an%20appeal%20to%20sai%20deevotees.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[5]/TD[2]/B[1]/FONT[1]/A[1]"];
+  1 -> 9 [label = ""PUNYATITHI" A: href="picturegallery/2011/ShreeSaibabaPunyatithiUtsav2011/index.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[5]/TD[4]/B[1]/FONT[1]/A[1]"];
+  1 -> 9 [label = ""UTSAV 2011 PICTURE GALLERY" A: href="picturegallery/2011/ShreeSaibabaPunyatithiUtsav2011/index.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[5]/TD[4]/B[1]/FONT[1]/A[2]"];
+  1 -> 10 [label = ""Photo For Download" A: href="freshphoto/freephoto.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[6]/TD[2]/B[1]/FONT[1]/A[1]"];
+  1 -> 11 [label = ""Medical Aid" A: href="new%20_marathitemplate_shirdi/shri%20saibaba%20trust/medical%20aid.html" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[6]/TD[4]/P[1]/B[1]/A[1]"];
+  1 -> 12 [label = ""An Appeal to Sai Devotees to donate for free Annadan Scheme at New Prasadalaya" A: href="new_eng%20template_shirdi/shri%20saibaba%20trust/newdept/appeal/appeal_prasadalay/ap_prasadalay.htm" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[7]/TD[2]/SPAN[1]/SPAN[1]/A[1]"];
+  1 -> 13 [label = ""FreeFood" A: href="appeal/Appeal_FREEFOOD.htm" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[7]/TD[4]/B[1]/A[1]"];
+  13 -> 1 [label = ""Back" A: href="../index.html" style="FONT-WEIGHT: 700; TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/P[1]/FONT[1]/A[1]"];
+  1 -> 14 [label = ""An Appeal to Sai Devotees & Sai temple For Sai diary and Calendar 2012" A: href="appeal/index.htm" style="TEXT-DECORATION: none" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[5]/TD[1]/DIV[1]/CENTER[1]/TABLE[1]/TBODY[1]/TR[8]/TD[2]/SPAN[1]/SPAN[1]/B[1]/A[1]"];
+}
+

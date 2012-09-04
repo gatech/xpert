@@ -1,0 +1,38 @@
+<html>
+	<head>
+	<title>Overview: index</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt;}
+	</style>
+	<script>
+	function disablePreviousStateBtn() {
+  
+      if(parent.isStackEmpty())
+         document.getElementById("previousStateBtn").disabled = true;
+      else 
+        document.getElementById("previousStateBtn").disabled = false;
+    }
+	
+	</script>
+	</head>
+<body onLoad="disablePreviousStateBtn();">
+<div style="height: 28px">
+   <input type="button" id="previousStateBtn" onclick="parent.showPreviousState();" value="Previous State"/>
+   <span style="margin-left: 20px;">
+		Legend:&nbsp;
+		<span style="background: green;">&nbsp;New state&nbsp;</span>&nbsp;&nbsp;		
+		<span style="background: orange;">&nbsp;No state change&nbsp;</span>
+	</span>
+</div>
+<img border='0' src='../../screenshots/index.png' />
+<div style="position: absolute; z-index: 10; left: 516px; top: 104px; width: 57px; height: 32px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 581px; top: 104px; width: 83px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state1.html'"></div>
+<div style="position: absolute; z-index: 20; left: 672px; top: 104px; width: 106px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state2.html'"></div>
+<div style="position: absolute; z-index: 20; left: 786px; top: 104px; width: 58px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state3.html'"></div>
+<div style="position: absolute; z-index: 20; left: 852px; top: 104px; width: 79px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state4.html'"></div>
+<div style="position: absolute; z-index: 20; left: 939px; top: 104px; width: 105px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state5.html'"></div>
+<div style="position: absolute; z-index: 20; left: 1052px; top: 104px; width: 45px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state6.html'"></div>
+<script type="text/javascript"> 
+parent.updateState("index");
+</script>
+</body></html>

@@ -1,0 +1,200 @@
+<html>
+	<head>
+	<script type="text/javascript" src="../../src/js/prototype-1.4.0.js"></script> 	
+	<script type="text/javascript" src="../../src/js/graph.js"></script> 
+	<script type="text/javascript" src="../../src/js/cc.js"></script> 
+	<title>Overview Report</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma, Arial; font-size: 10pt;}
+		img{ border: 1px solid black;}
+	</style>
+	</head>
+<body onLoad="javascript:showState();">
+<form>
+<div style='height: 28px; border-bottom: 1px solid black;'>
+	<nobr>
+	   <input type="button" id="initialStateBtn" onclick="clearStack();loadState('index')" value="Initial State"></input>
+	   Current State: <b><span id="currentState">index</span></b>
+	   <input type="button" onclick="toggleGraph();" value="Toggle Graph"/>&nbsp;&nbsp;	
+	</nobr>
+</div>
+
+<!-- graph -->
+<div id="graphPanel" style="display: none; position: absolute; z-index: 20; left: 0px; top: 35px;">
+  <div id="graph2">  
+	<embed src="ie_nav.svg" id="browser2" width="1350" height="350" type="image/svg+xml" name="browser2"/>
+  </div>
+<canvas id="graph" style="border: 0px;"></canvas> 
+</div>
+<iframe id="stateFrame" width="100%" height="100%" scrolling="no" style="border: 0px;"></iframe><!--  src="states/index.html"-->
+<input type="hidden" name="graphOrState" id="graphOrState" value="state"/>
+<input type="hidden" name="browserName" id="browserName" value="ie"/>
+<input type="hidden" id="perspective" name="perspective" value="individual"/>
+</form>
+<script type="text/javascript"> 
+
+var selectedState = "index";
+function toggleGraph(){
+    var graphOrState = document.getElementById("graphOrState").value;
+	
+	var elGraph = document.getElementById("graphPanel");	
+	var elStateFrame = document.getElementById("stateFrame");	
+	
+	var browserName = document.getElementById("browserName").value.toLowerCase();	
+	
+	var stateName = document.getElementById("currentState").innerHTML;
+			
+	if(graphOrState == "graph") {    
+	  // states can be displayed only when browserName is set
+	  if(browserName != "") {
+	     elGraph.style.display = "none";
+		 elStateFrame.style.display = "block";
+		 document.getElementById("graphOrState").value = "state";
+		 
+		 document.getElementById("stateFrame").src = "./crawloverview/states/" + stateName + ".html";
+		 
+		 // don't forward if it is at initial stage
+		if(stateName != "index")
+		  history.forward();
+		}
+		else {		
+		  document.getElementById("stateFrame").src = "./crawloverview/states/index.html";
+		}
+	  
+	}
+	else {	
+	  resetSVG();
+	  document.getElementById("graphOrState").value = "graph";
+	  
+	  elStateFrame.style.display = "none";
+	  elGraph.style.display = "block";	  
+	}
+	
+}
+
+function resetSVG() {
+    document.getElementById("graph2").innerHTML = "";
+	document.getElementById("graph2").innerHTML = "<embed src='ie_nav.svg' id='browser2' width='1350' height='350' type='image/svg+xml' name='browser2'/>";
+
+}
+
+function disableInitialStateBtn(stateName) {
+  //alert(stateName);
+    if(stateName == "index" || stateName == "")
+       document.getElementById("initialStateBtn").disabled = true;
+    else 
+       document.getElementById("initialStateBtn").disabled = false;
+}
+
+function showState( )
+{ 
+  
+  disableInitialStateBtn('index'); 
+  var state = getReqParam('state');
+        
+  // if state request variable is not present then directly show the graph
+   if( state == null || state == "") {
+    var graphOrState = document.getElementById("graphOrState").value;
+	
+	var elGraph = document.getElementById("graphPanel");	
+	var elStateFrame = document.getElementById("stateFrame");	
+ 
+    document.getElementById("browser2").value = "ie_nav.svg";
+	document.getElementById("graphOrState").value = "graph";
+	
+	elStateFrame.style.display = "none";
+	elGraph.style.display = "block";
+	  
+    return "";
+	
+  }
+  else {
+     document.getElementById("graphOrState").value = "state";
+     document.getElementById("stateFrame").src =  state;
+  }
+  
+}
+
+function getReqParam(paramName) {
+
+  paramName = paramName.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+paramName+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( window.location.href );
+  if( results == null )
+    return "";
+  else {  
+    return results[1];
+  }
+}
+
+function loadState(name) {
+    loadState(name, true);
+}
+
+function loadState(name, clearStackFlag) {
+    disableInitialStateBtn(name); 
+    var browserName = document.getElementById("browserName").value.toLowerCase();
+	// states can be displayed only when browserName is set
+	if(browserName != "") {
+       document.getElementById('stateFrame').src = "./crawloverview/states/" + name + ".html";
+	   document.getElementById("graphPanel").style.display = "none";
+	   document.getElementById("stateFrame").style.display = "block";
+	   document.getElementById("graphOrState").value = "state";
+	   document.getElementById('currentState').innerHTML = name;
+	}
+	
+	if(clearStackFlag)
+	   clearStack();
+
+}
+
+function updateState(newState){
+    disableInitialStateBtn(newState); 
+	document.getElementById("currentState").innerHTML= newState;
+	
+//	document.getElementById("link" + selectedState).style.color = "black";
+//	document.getElementById("link" + selectedState).style.fontWeight = "normal";
+//	document.getElementById("img" + selectedState).style.borderColor = "black";
+
+//	document.getElementById("link" + newState).style.color = "red";
+//	document.getElementById("link" + newState).style.fontWeight = "bold";
+//	document.getElementById("img" + newState).style.borderColor = "red";
+	selectedState = newState;
+	document.getElementById("graphOrState").value = "state";
+}
+
+function showPreviousState() {   
+
+   var stateTobeShown = popStack();   
+   
+   if(stateTobeShown != "") {
+     loadState(stateTobeShown, false);
+	 disableInitialStateBtn(stateTobeShown);
+   }
+
+}
+
+function isStackEmpty() {
+   if(stack.length == 0)
+     return true;
+   else
+     return false;
+
+}
+
+function showStack(){
+   var stackElements = "";
+   for (var i = 0; i < stack.length; i++){
+      stackElements = stackElements + "," + stack[i];      
+   }
+   alert(stackElements);
+}
+</script>
+
+
+
+</body></html>
+
+
+

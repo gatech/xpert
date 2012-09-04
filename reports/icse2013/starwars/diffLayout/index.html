@@ -1,0 +1,779 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="../src/css/style.css"/>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/jquery.tablesorter.min.js"></script>
+
+<script>
+
+var rectColor = '#f00';
+
+function setUp(){
+  var state = "${state}";
+  loadImage($('#A')[0],'../browsers/firefox/screenshots/index.png');
+  loadImage($('#B')[0],'../browsers/ie/screenshots/index.png');
+
+  //loadDiff();
+  $('#dA').scroll(function(){
+	$('#dB').scrollTop(this.scrollTop);
+	$('#dB').scrollLeft(this.scrollLeft);
+  });
+  $('#dB').scroll(function(){
+        $('#dA').scrollTop(this.scrollTop);
+        $('#dA').scrollLeft(this.scrollLeft);
+  });
+
+}
+	 
+// Load image into canvas
+function loadImage(canvas, image_url, callback){
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = image_url;
+  img.onload = function(){
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img,0,0);
+    if(callback){ callback(); }
+  }
+}
+//Load cross browser difference on right side
+function loadDiff_ref(x0,y0,w,h){
+  var ctx = $('#A')[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+  }
+
+}
+//Load cross browser difference on right side
+function loadDiff(id,x0,y0,w,h){
+  var ctx = $(id)[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+	}
+}
+
+function draw4Coords(c1, c1a, c2, c2a) {
+  //clear
+  setUp();
+  
+  setTimeout(function () {
+	  //draw src nodes
+	  rectColor = '#f00';
+	  drawCoords("#A", c1); drawCoords("#B", c2);
+	  
+	  //draw tgt nodes
+	  rectColor = '#0f0';
+	  drawCoords("#A", c1a); drawCoords("#B", c2a);
+  }, 100);
+  
+}
+
+function drawCoords(id, temp){
+
+	if(temp == "(null)") return;
+
+	var x0=new Array();
+	var y0=new Array();
+	var w=new Array();
+	var h=new Array();
+	while(temp.indexOf('(')!=-1){
+		var currNo=temp.indexOf('(')+1;
+		var comma=temp.indexOf(',');
+		var x0Val=temp.substring(currNo,comma);
+		temp=temp.substring(comma+1,temp.length);
+		//alert(temp);
+		comma=temp.indexOf(',');
+		var y0Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		comma=temp.indexOf(',');
+		var x1Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		var width=x1Val-x0Val;	
+		comma=temp.indexOf(',');
+		var y1Val=temp.substring(0,temp.indexOf(')'));
+		var height=y1Val-y0Val;	
+		x0.push(x0Val);
+		y0.push(y0Val);
+		w.push(width);
+		h.push(height);
+	}
+	loadDiff(id, x0,y0,w,h);
+}
+function makeOSkin(){
+	if(document.getElementById("cType").value=='3'){
+		alert("X1XX");
+		mydiv = document.getElementById("dB");
+		mydiv.style.display = "none"; //to hide it
+		var canvas=$('#A')[0];
+		var ctx = canvas.getContext('2d');
+		ctx.globalAlpha = 0.5; 
+		loadImage(canvas,'ie0.png');
+		
+	}
+}
+function showHide(id){
+    $(".r"+id).toggle();
+	$("#i"+id).toggleClass('minus')
+}
+$(document).ready(setUp);
+</script>
+</head>
+<body>
+
+<div id="main">
+
+<div id="dA" style="overflow:scroll;width:50%;height:75%;float:left;">
+<canvas id="A"></canvas>
+</div>
+<div id="dB" style="overflow:scroll;width:50%;height:75%;float:left;">
+
+<!--canvas id="D"></canvas-->
+<canvas id="B"></canvas>
+</div>
+</div>
+<div style="clear:both;"></div>
+<table class="sclbl" style="height:5%">
+  <tr>
+    <th>Mozilla Firefox</th>
+	<th>Internet Explorer</th> 
+  </tr>
+
+</table>
+<div style="height:20%;width:100%;overflow-y:scroll">
+<center>
+
+<table id="lResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="150px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="250px">Message</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">Edge1</th>
+<th bgcolor="#CCCCCC">Edge2</th>
+</tr>
+</thead>
+
+
+
+<tr class='cluster'><td id='i1' class='plus' onclick='showHide("1")'></td><td colspan='5'>Layout Issue-1: Element relocation to new parent</td></tr>
+	<tr class='odd r1' style='display:none'>
+	  <td id="item_1_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Missing parent in second</td>
+		  <td><a href='javascript:draw4Coords("(0, 0, 1304, 2462)","(0, 0, 1304, 2462)","(null)","(null)");moveMarker("#item_1_1");'>(0, 0, 1304, 2462)-(0, 0, 1304, 2462) 
+	  , (null)-(null)</td>
+		  <td>/HTML/BODY/DIV<-/HTML/BODY</td>
+			  <td></td>
+		</tr>
+	<tr class='cluster'><td id='i2' class='plus' onclick='showHide("2")'></td><td colspan='5'>Layout Issue-2: Element property disruption</td></tr>
+	<tr class='odd r2' style='display:none'>
+	  <td id="item_2_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2227, 941, 2261)","(620, 1738, 734, 1867)","(513, 2370, 941, 2499)","(516, 1902, 630, 2031)");moveMarker("#item_2_1");'>(513, 2227, 941, 2261)-(620, 1738, 734, 1867) 
+	  , (513, 2370, 941, 2499)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2070, 941, 2104)","(620, 1738, 734, 1867)","(513, 2216, 941, 2345)","(516, 1902, 630, 2031)");moveMarker("#item_2_2");'>(513, 2070, 941, 2104)-(620, 1738, 734, 1867) 
+	  , (513, 2216, 941, 2345)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_3">3</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 941, 1645)","(620, 1738, 734, 1867)","(513, 1758, 941, 1887)","(516, 1902, 630, 2031)");moveMarker("#item_2_3");'>(513, 1611, 941, 1645)-(620, 1738, 734, 1867) 
+	  , (513, 1758, 941, 1887)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_4">4</td>
+	  <td>SIBLING</td> 
+	  <td>Top-Bottom issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 617, 1740)","(620, 1738, 734, 1867)","(516, 1758, 620, 1887)","(516, 1902, 630, 2031)");moveMarker("#item_2_4");'>(513, 1611, 617, 1740)-(620, 1738, 734, 1867) 
+	  , (516, 1758, 620, 1887)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_5">5</td>
+	  <td>SIBLING</td> 
+	  <td>Left-Right issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 617, 1740)","(620, 1738, 734, 1867)","(516, 1758, 620, 1887)","(516, 1902, 630, 2031)");moveMarker("#item_2_5");'>(513, 1611, 617, 1740)-(620, 1738, 734, 1867) 
+	  , (516, 1758, 620, 1887)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_6">6</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 617, 1740)","(620, 1738, 734, 1867)","(516, 1758, 620, 1887)","(516, 1902, 630, 2031)");moveMarker("#item_2_6");'>(513, 1611, 617, 1740)-(620, 1738, 734, 1867) 
+	  , (516, 1758, 620, 1887)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_7">7</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1738, 941, 1789)","(620, 1738, 734, 1867)","(513, 1902, 941, 2031)","(516, 1902, 630, 2031)");moveMarker("#item_2_7");'>(513, 1738, 941, 1789)-(620, 1738, 734, 1867) 
+	  , (513, 1902, 941, 2031)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_8">8</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1738, 941, 1789)","(620, 1738, 734, 1867)","(513, 1902, 941, 2031)","(516, 1902, 630, 2031)");moveMarker("#item_2_8");'>(513, 1738, 941, 1789)-(620, 1738, 734, 1867) 
+	  , (513, 1902, 941, 2031)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_9">9</td>
+	  <td>SIBLING</td> 
+	  <td>Left-Right issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1404, 602, 1533)","(620, 1738, 734, 1867)","(516, 1509, 605, 1638)","(516, 1902, 630, 2031)");moveMarker("#item_2_9");'>(513, 1404, 602, 1533)-(620, 1738, 734, 1867) 
+	  , (516, 1509, 605, 1638)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_10">10</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1404, 602, 1533)","(620, 1738, 734, 1867)","(516, 1509, 605, 1638)","(516, 1902, 630, 2031)");moveMarker("#item_2_10");'>(513, 1404, 602, 1533)-(620, 1738, 734, 1867) 
+	  , (516, 1509, 605, 1638)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_11">11</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1656, 941, 1701)","(620, 1738, 734, 1867)","(513, 1809, 941, 1848)","(516, 1902, 630, 2031)");moveMarker("#item_2_11");'>(513, 1656, 941, 1701)-(620, 1738, 734, 1867) 
+	  , (513, 1809, 941, 1848)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[2]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[2]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_12">12</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2070, 642, 2199)","(620, 1738, 734, 1867)","(516, 2216, 645, 2345)","(516, 1902, 630, 2031)");moveMarker("#item_2_12");'>(513, 2070, 642, 2199)-(620, 1738, 734, 1867) 
+	  , (516, 2216, 645, 2345)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_13">13</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1449, 941, 1494)","(620, 1738, 734, 1867)","(513, 1560, 941, 1599)","(516, 1902, 630, 2031)");moveMarker("#item_2_13");'>(513, 1449, 941, 1494)-(620, 1738, 734, 1867) 
+	  , (513, 1560, 941, 1599)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_14">14</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1800, 941, 1890)","(620, 1738, 734, 1867)","(513, 1953, 941, 2005)","(516, 1902, 630, 2031)");moveMarker("#item_2_14");'>(513, 1800, 941, 1890)-(620, 1738, 734, 1867) 
+	  , (513, 1953, 941, 2005)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_15">15</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1928, 697, 2057)","(620, 1738, 734, 1867)","(516, 2059, 700, 2188)","(516, 1902, 630, 2031)");moveMarker("#item_2_15");'>(513, 1928, 697, 2057)-(620, 1738, 734, 1867) 
+	  , (516, 2059, 700, 2188)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_16">16</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1404, 941, 1438)","(620, 1738, 734, 1867)","(513, 1509, 941, 1638)","(516, 1902, 630, 2031)");moveMarker("#item_2_16");'>(513, 1404, 941, 1438)-(620, 1738, 734, 1867) 
+	  , (513, 1509, 941, 1638)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_17">17</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1800, 941, 1890)","(516, 1902, 630, 2031)","(513, 1953, 941, 2005)");moveMarker("#item_2_17");'>(620, 1738, 734, 1867)-(513, 1800, 941, 1890) 
+	  , (516, 1902, 630, 2031)-(513, 1953, 941, 2005)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_18">18</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom-Top issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1611, 617, 1740)","(516, 1902, 630, 2031)","(516, 1758, 620, 1887)");moveMarker("#item_2_18");'>(620, 1738, 734, 1867)-(513, 1611, 617, 1740) 
+	  , (516, 1902, 630, 2031)-(516, 1758, 620, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_19">19</td>
+	  <td>SIBLING</td> 
+	  <td>Right-Left issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1611, 617, 1740)","(516, 1902, 630, 2031)","(516, 1758, 620, 1887)");moveMarker("#item_2_19");'>(620, 1738, 734, 1867)-(513, 1611, 617, 1740) 
+	  , (516, 1902, 630, 2031)-(516, 1758, 620, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_20">20</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1611, 617, 1740)","(516, 1902, 630, 2031)","(516, 1758, 620, 1887)");moveMarker("#item_2_20");'>(620, 1738, 734, 1867)-(513, 1611, 617, 1740) 
+	  , (516, 1902, 630, 2031)-(516, 1758, 620, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_21">21</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2070, 941, 2104)","(516, 1902, 630, 2031)","(513, 2216, 941, 2345)");moveMarker("#item_2_21");'>(620, 1738, 734, 1867)-(513, 2070, 941, 2104) 
+	  , (516, 1902, 630, 2031)-(513, 2216, 941, 2345)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_22">22</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1449, 941, 1494)","(516, 1902, 630, 2031)","(513, 1560, 941, 1599)");moveMarker("#item_2_22");'>(620, 1738, 734, 1867)-(513, 1449, 941, 1494) 
+	  , (516, 1902, 630, 2031)-(513, 1560, 941, 1599)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_23">23</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2227, 692, 2356)","(516, 1902, 630, 2031)","(516, 2370, 695, 2499)");moveMarker("#item_2_23");'>(620, 1738, 734, 1867)-(513, 2227, 692, 2356) 
+	  , (516, 1902, 630, 2031)-(516, 2370, 695, 2499)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_24">24</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1611, 941, 1645)","(516, 1902, 630, 2031)","(513, 1758, 941, 1887)");moveMarker("#item_2_24");'>(620, 1738, 734, 1867)-(513, 1611, 941, 1645) 
+	  , (516, 1902, 630, 2031)-(513, 1758, 941, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_25">25</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1973, 941, 2033)","(516, 1902, 630, 2031)","(513, 2110, 941, 2162)");moveMarker("#item_2_25");'>(620, 1738, 734, 1867)-(513, 1973, 941, 2033) 
+	  , (516, 1902, 630, 2031)-(513, 2110, 941, 2162)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[4]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[4]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_26">26</td>
+	  <td>SIBLING</td> 
+	  <td>Right-Left issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1404, 602, 1533)","(516, 1902, 630, 2031)","(516, 1509, 605, 1638)");moveMarker("#item_2_26");'>(620, 1738, 734, 1867)-(513, 1404, 602, 1533) 
+	  , (516, 1902, 630, 2031)-(516, 1509, 605, 1638)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_27">27</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1404, 602, 1533)","(516, 1902, 630, 2031)","(516, 1509, 605, 1638)");moveMarker("#item_2_27");'>(620, 1738, 734, 1867)-(513, 1404, 602, 1533) 
+	  , (516, 1902, 630, 2031)-(516, 1509, 605, 1638)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_28">28</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2115, 941, 2190)","(516, 1902, 630, 2031)","(513, 2267, 941, 2332)");moveMarker("#item_2_28");'>(620, 1738, 734, 1867)-(513, 2115, 941, 2190) 
+	  , (516, 1902, 630, 2031)-(513, 2267, 941, 2332)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[5]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[5]</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_29">29</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1404, 941, 1438)","(516, 1902, 630, 2031)","(513, 1509, 941, 1638)");moveMarker("#item_2_29");'>(620, 1738, 734, 1867)-(513, 1404, 941, 1438) 
+	  , (516, 1902, 630, 2031)-(513, 1509, 941, 1638)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_30">30</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2272, 941, 2332)","(516, 1902, 630, 2031)","(513, 2421, 941, 2473)");moveMarker("#item_2_30");'>(620, 1738, 734, 1867)-(513, 2272, 941, 2332) 
+	  , (516, 1902, 630, 2031)-(513, 2421, 941, 2473)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[7]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[7]</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_31">31</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1928, 941, 1962)","(516, 1902, 630, 2031)","(513, 2059, 941, 2188)");moveMarker("#item_2_31");'>(620, 1738, 734, 1867)-(513, 1928, 941, 1962) 
+	  , (516, 1902, 630, 2031)-(513, 2059, 941, 2188)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_32">32</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1928, 697, 2057)","(516, 1902, 630, 2031)","(516, 2059, 700, 2188)");moveMarker("#item_2_32");'>(620, 1738, 734, 1867)-(513, 1928, 697, 2057) 
+	  , (516, 1902, 630, 2031)-(516, 2059, 700, 2188)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_33">33</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1656, 941, 1701)","(516, 1902, 630, 2031)","(513, 1809, 941, 1848)");moveMarker("#item_2_33");'>(620, 1738, 734, 1867)-(513, 1656, 941, 1701) 
+	  , (516, 1902, 630, 2031)-(513, 1809, 941, 1848)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[2]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[2]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_34">34</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2070, 642, 2199)","(516, 1902, 630, 2031)","(516, 2216, 645, 2345)");moveMarker("#item_2_34");'>(620, 1738, 734, 1867)-(513, 2070, 642, 2199) 
+	  , (516, 1902, 630, 2031)-(516, 2216, 645, 2345)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_35">35</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 2227, 941, 2261)","(516, 1902, 630, 2031)","(513, 2370, 941, 2499)");moveMarker("#item_2_35");'>(620, 1738, 734, 1867)-(513, 2227, 941, 2261) 
+	  , (516, 1902, 630, 2031)-(513, 2370, 941, 2499)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_36">36</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1738, 941, 1789)","(516, 1902, 630, 2031)","(513, 1902, 941, 2031)");moveMarker("#item_2_36");'>(620, 1738, 734, 1867)-(513, 1738, 941, 1789) 
+	  , (516, 1902, 630, 2031)-(513, 1902, 941, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_37">37</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(620, 1738, 734, 1867)","(513, 1738, 941, 1789)","(516, 1902, 630, 2031)","(513, 1902, 941, 2031)");moveMarker("#item_2_37");'>(620, 1738, 734, 1867)-(513, 1738, 941, 1789) 
+	  , (516, 1902, 630, 2031)-(513, 1902, 941, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_38">38</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2227, 692, 2356)","(620, 1738, 734, 1867)","(516, 2370, 695, 2499)","(516, 1902, 630, 2031)");moveMarker("#item_2_38");'>(513, 2227, 692, 2356)-(620, 1738, 734, 1867) 
+	  , (516, 2370, 695, 2499)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_39">39</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2115, 941, 2190)","(620, 1738, 734, 1867)","(513, 2267, 941, 2332)","(516, 1902, 630, 2031)");moveMarker("#item_2_39");'>(513, 2115, 941, 2190)-(620, 1738, 734, 1867) 
+	  , (513, 2267, 941, 2332)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[5]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[5]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_40">40</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2272, 941, 2332)","(620, 1738, 734, 1867)","(513, 2421, 941, 2473)","(516, 1902, 630, 2031)");moveMarker("#item_2_40");'>(513, 2272, 941, 2332)-(620, 1738, 734, 1867) 
+	  , (513, 2421, 941, 2473)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[7]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[7]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_41">41</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1973, 941, 2033)","(620, 1738, 734, 1867)","(513, 2110, 941, 2162)","(516, 1902, 630, 2031)");moveMarker("#item_2_41");'>(513, 1973, 941, 2033)-(620, 1738, 734, 1867) 
+	  , (513, 2110, 941, 2162)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[4]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[4]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_42">42</td>
+	  <td>SIBLING</td> 
+	  <td>Left Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1928, 941, 1962)","(620, 1738, 734, 1867)","(513, 2059, 941, 2188)","(516, 1902, 630, 2031)");moveMarker("#item_2_42");'>(513, 1928, 941, 1962)-(620, 1738, 734, 1867) 
+	  , (513, 2059, 941, 2188)-(516, 1902, 630, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A/IMG</td>
+		</tr>
+	<tr class='cluster'><td id='i3' class='plus' onclick='showHide("3")'></td><td colspan='5'>Layout Issue-3: Element property disruption</td></tr>
+	<tr class='odd r3' style='display:none'>
+	  <td id="item_3_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 941, 1645)","(513, 1611, 617, 1740)","(513, 1758, 941, 1887)","(516, 1758, 620, 1887)");moveMarker("#item_3_1");'>(513, 1611, 941, 1645)-(513, 1611, 617, 1740) 
+	  , (513, 1758, 941, 1887)-(516, 1758, 620, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+		</tr>
+		<tr class='even r3' style='display:none'>
+	  <td id="item_3_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 617, 1740)","(513, 1611, 941, 1645)","(516, 1758, 620, 1887)","(513, 1758, 941, 1887)");moveMarker("#item_3_2");'>(513, 1611, 617, 1740)-(513, 1611, 941, 1645) 
+	  , (516, 1758, 620, 1887)-(513, 1758, 941, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]</td>
+		</tr>
+		<tr class='odd r3' style='display:none'>
+	  <td id="item_3_3">3</td>
+	  <td>SIBLING</td> 
+	  <td>Top-Bottom issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1611, 617, 1740)","(513, 1738, 941, 1789)","(516, 1758, 620, 1887)","(513, 1902, 941, 2031)");moveMarker("#item_3_3");'>(513, 1611, 617, 1740)-(513, 1738, 941, 1789) 
+	  , (516, 1758, 620, 1887)-(513, 1902, 941, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+		</tr>
+		<tr class='even r3' style='display:none'>
+	  <td id="item_3_4">4</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom-Top issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1738, 941, 1789)","(513, 1611, 617, 1740)","(513, 1902, 941, 2031)","(516, 1758, 620, 1887)");moveMarker("#item_3_4");'>(513, 1738, 941, 1789)-(513, 1611, 617, 1740) 
+	  , (513, 1902, 941, 2031)-(516, 1758, 620, 1887)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A/IMG</td>
+		</tr>
+	<tr class='cluster'><td id='i4' class='plus' onclick='showHide("4")'></td><td colspan='5'>Layout Issue-4: Element property disruption</td></tr>
+	<tr class='odd r4' style='display:none'>
+	  <td id="item_4_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Top-Bottom issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1738, 941, 1789)","(513, 1800, 941, 1890)","(513, 1902, 941, 2031)","(513, 1953, 941, 2005)");moveMarker("#item_4_1");'>(513, 1738, 941, 1789)-(513, 1800, 941, 1890) 
+	  , (513, 1902, 941, 2031)-(513, 1953, 941, 2005)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]</td>
+		</tr>
+		<tr class='even r4' style='display:none'>
+	  <td id="item_4_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom-Top issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1800, 941, 1890)","(513, 1738, 941, 1789)","(513, 1953, 941, 2005)","(513, 1902, 941, 2031)");moveMarker("#item_4_2");'>(513, 1800, 941, 1890)-(513, 1738, 941, 1789) 
+	  , (513, 1953, 941, 2005)-(513, 1902, 941, 2031)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/P[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]</td>
+		</tr>
+	<tr class='cluster'><td id='i5' class='plus' onclick='showHide("5")'></td><td colspan='5'>Layout Issue-5: Element property disruption</td></tr>
+	<tr class='odd r5' style='display:none'>
+	  <td id="item_5_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1404, 602, 1533)","(513, 1404, 941, 1438)","(516, 1509, 605, 1638)","(513, 1509, 941, 1638)");moveMarker("#item_5_1");'>(513, 1404, 602, 1533)-(513, 1404, 941, 1438) 
+	  , (516, 1509, 605, 1638)-(513, 1509, 941, 1638)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]</td>
+		</tr>
+		<tr class='even r5' style='display:none'>
+	  <td id="item_5_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1404, 941, 1438)","(513, 1404, 602, 1533)","(513, 1509, 941, 1638)","(516, 1509, 605, 1638)");moveMarker("#item_5_2");'>(513, 1404, 941, 1438)-(513, 1404, 602, 1533) 
+	  , (513, 1509, 941, 1638)-(516, 1509, 605, 1638)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A/IMG</td>
+		</tr>
+	<tr class='cluster'><td id='i6' class='plus' onclick='showHide("6")'></td><td colspan='5'>Layout Issue-6: Element property disruption</td></tr>
+	<tr class='odd r6' style='display:none'>
+	  <td id="item_6_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2227, 941, 2261)","(513, 2227, 692, 2356)","(513, 2370, 941, 2499)","(516, 2370, 695, 2499)");moveMarker("#item_6_1");'>(513, 2227, 941, 2261)-(513, 2227, 692, 2356) 
+	  , (513, 2370, 941, 2499)-(516, 2370, 695, 2499)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG</td>
+		</tr>
+		<tr class='even r6' style='display:none'>
+	  <td id="item_6_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2227, 692, 2356)","(513, 2227, 941, 2261)","(516, 2370, 695, 2499)","(513, 2370, 941, 2499)");moveMarker("#item_6_2");'>(513, 2227, 692, 2356)-(513, 2227, 941, 2261) 
+	  , (516, 2370, 695, 2499)-(513, 2370, 941, 2499)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]</td>
+		</tr>
+	<tr class='cluster'><td id='i7' class='plus' onclick='showHide("7")'></td><td colspan='5'>Layout Issue-7: Element property disruption</td></tr>
+	<tr class='odd r7' style='display:none'>
+	  <td id="item_7_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2070, 941, 2104)","(513, 2070, 642, 2199)","(513, 2216, 941, 2345)","(516, 2216, 645, 2345)");moveMarker("#item_7_1");'>(513, 2070, 941, 2104)-(513, 2070, 642, 2199) 
+	  , (513, 2216, 941, 2345)-(516, 2216, 645, 2345)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG</td>
+		</tr>
+		<tr class='even r7' style='display:none'>
+	  <td id="item_7_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 2070, 642, 2199)","(513, 2070, 941, 2104)","(516, 2216, 645, 2345)","(513, 2216, 941, 2345)");moveMarker("#item_7_2");'>(513, 2070, 642, 2199)-(513, 2070, 941, 2104) 
+	  , (516, 2216, 645, 2345)-(513, 2216, 941, 2345)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]</td>
+		</tr>
+	<tr class='cluster'><td id='i8' class='plus' onclick='showHide("8")'></td><td colspan='5'>Layout Issue-8: Element property disruption</td></tr>
+	<tr class='odd r8' style='display:none'>
+	  <td id="item_8_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1928, 697, 2057)","(513, 1928, 941, 1962)","(516, 2059, 700, 2188)","(513, 2059, 941, 2188)");moveMarker("#item_8_1");'>(513, 1928, 697, 2057)-(513, 1928, 941, 1962) 
+	  , (516, 2059, 700, 2188)-(513, 2059, 941, 2188)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]</td>
+		</tr>
+		<tr class='even r8' style='display:none'>
+	  <td id="item_8_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Bottom Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(513, 1928, 941, 1962)","(513, 1928, 697, 2057)","(513, 2059, 941, 2188)","(516, 2059, 700, 2188)");moveMarker("#item_8_2");'>(513, 1928, 941, 1962)-(513, 1928, 697, 2057) 
+	  , (513, 2059, 941, 2188)-(516, 2059, 700, 2188)</td>
+		  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG</td>
+			  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]->/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[12]/A/IMG</td>
+		</tr>
+	</table>
+
+<table id="visResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="250px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">DOM XPath</th>
+<th bgcolor="#CCCCCC">Distance (EMD)</th>
+</tr>
+</thead>
+
+	<tr class='even'>
+	  <td id="v_0">0</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(699, 1418, 699, 1418)","(null)","(516, 1509, 605, 1638)","(null)");moveMarker("#v_0");'>(699, 1418, 699, 1418) - (516, 1509, 605, 1638)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[3]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_1">1</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(643, 1624, 643, 1624)","(null)","(516, 1758, 620, 1887)","(null)");moveMarker("#v_1");'>(643, 1624, 643, 1624) - (516, 1758, 620, 1887)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[8]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_2">2</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(739, 1752, 739, 1752)","(null)","(516, 1902, 630, 2031)","(null)");moveMarker("#v_2");'>(739, 1752, 739, 1752) - (516, 1902, 630, 2031)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[10]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_3">3</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(750, 2083, 750, 2083)","(null)","(516, 2216, 645, 2345)","(null)");moveMarker("#v_3");'>(750, 2083, 750, 2083) - (516, 2216, 645, 2345)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[14]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_4">4</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(774, 2240, 774, 2240)","(null)","(516, 2370, 695, 2499)","(null)");moveMarker("#v_4");'>(774, 2240, 774, 2240) - (516, 2370, 695, 2499)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[15]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_5">5</td>
+	  <td>APPEARANCE</td> 
+	  <td><a href='javascript:draw4Coords("(513, 1505, 941, 1522)","(null)","(513, 1618, 941, 1634)","(null)");moveMarker("#v_5");'>(513, 1505, 941, 1522) - (513, 1618, 941, 1634)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[4] - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[4]</td>
+	  <td>9121.641602</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_6">6</td>
+	  <td>APPEARANCE</td> 
+	  <td><a href='javascript:draw4Coords("(513, 1712, 941, 1729)","(null)","(513, 1867, 941, 1883)","(null)");moveMarker("#v_6");'>(513, 1712, 941, 1729) - (513, 1867, 941, 1883)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[9] - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[9]</td>
+	  <td>8460.299805</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_7">7</td>
+	  <td>APPEARANCE</td> 
+	  <td><a href='javascript:draw4Coords("(513, 1901, 941, 1918)","(null)","(513, 2024, 941, 2040)","(null)");moveMarker("#v_7");'>(513, 1901, 941, 1918) - (513, 2024, 941, 2040)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[11] - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/BLOCKQUOTE[2]/H1[11]</td>
+	  <td>4810.720215</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_8">8</td>
+	  <td>APPEARANCE</td> 
+	  <td><a href='javascript:draw4Coords("(473, 1203, 981, 1220)","(null)","(473, 1229, 981, 1245)","(null)");moveMarker("#v_8");'>(473, 1203, 981, 1220) - (473, 1229, 981, 1245)</a></td>
+	  <td>/HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/H1[3] - /HTML/BODY/DIV/TABLE[2]/TBODY/TR[2]/TD[2]/TABLE/TBODY/TR/TD/H1[3]</td>
+	  <td>4383.706055</td>
+	</tr>
+
+</table>
+<span id="marker">&gt;</span>
+</center>
+</div>
+<script>
+
+function moveMarker(item) {
+  $(item).prepend($("#marker"));
+}
+
+$(document).ready(function() { 
+  $("#lResults").tablesorter(); 
+  $("#visResults").tablesorter(); 
+} 
+); 
+</script>
+</body>
+</html>

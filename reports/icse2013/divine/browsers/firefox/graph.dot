@@ -1,0 +1,32 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  10;
+  11;
+  12;
+  13;
+  14;
+  15;
+  1 -> 2 [label = ""Home" A: class="active-link" href="http://www.sivanandaonline.org/public_html/?format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[1]/A[1]"];
+  1 -> 3 [label = ""About Us" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=1055&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[3]/A[1]"];
+  3 -> 4 [label = ""Home" A: class="" href="http://www.sivanandaonline.org/public_html/?format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[1]/A[1]"];
+  1 -> 5 [label = ""Divine Life" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=353&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[5]/A[1]"];
+  1 -> 6 [label = ""Paths of Yoga" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=632&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[7]/A[1]"];
+  1 -> 7 [label = ""Yogasanas" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=638&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[9]/A[1]"];
+  1 -> 8 [label = ""Pranayama" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=639&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[11]/A[1]"];
+  1 -> 9 [label = ""Meditation" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=640&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[13]/A[1]"];
+  1 -> 10 [label = ""Store" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysection&section_id=360&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[15]/A[1]"];
+  1 -> 11 [label = ""Whats New" A: href="http://www.sivanandaonline.org/newsupdates" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[17]/A[1]"];
+  1 -> 12 [label = ""Gallery" A: href="gallery" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[2]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/UL[1]/LI[19]/A[1]"];
+  1 -> 13 [label = ""Spiritual Calendar" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysubsection&section_id=970&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/A[1]"];
+  1 -> 14 [label = ""Contact Us" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysubsection&section_id=973&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/A[3]"];
+  1 -> 15 [label = ""FAQ" A: href="http://www.sivanandaonline.org/public_html/?cmd=displaysubsection&section_id=971&format=html" click xpath /HTML[1]/BODY[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/TABLE[1]/TBODY[1]/TR[1]/TD[2]/A[5]"];
+}
+

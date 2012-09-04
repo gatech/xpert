@@ -1,0 +1,33 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  8;
+  9;
+  10;
+  11;
+  12;
+  13;
+  14;
+  1 -> 2 [label = "A: href="menus_page.html" title="Fisherman's Lodge Menus" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[2]/P[1]/A[1]"];
+  1 -> 3 [label = "A: href="friends_of_the_dene.html" title="Friends of the Dene" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[3]/P[1]/A[1]"];
+  1 -> 4 [label = ""THE RESTAURANT" A: href="/the_restaurant.html" target="_self" title="THE RESTAURANT" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[2]/DIV[1]/A[1]"];
+  1 -> 5 [label = ""THE WINE CELLAR" A: href="/the_bar_wine_cellar.html" target="_self" title="THE WINE CELLAR" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[3]/DIV[1]/A[1]"];
+  1 -> 6 [label = ""PRIVATE FUNCTIONS" A: href="/private_functions.html" target="_self" title="PRIVATE FUNCTIONS" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[4]/DIV[1]/A[1]"];
+  1 -> 7 [label = ""FOR BUSINESS" A: href="/for_business.html" target="_self" title="FOR BUSINESS" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[5]/DIV[1]/A[1]"];
+  1 -> 8 [label = ""WEDDINGS" A: href="/weddings.html" target="_self" title="WEDDINGS" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[6]/DIV[1]/A[1]"];
+  1 -> 9 [label = ""CONTACT" A: href="/contact.html" target="_self" title="CONTACT" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[1]/DIV[5]/UL[1]/LI[7]/DIV[1]/A[1]"];
+  1 -> 10 [label = ""Events" A: href="events_offers.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[1]/A[1]"];
+  1 -> 10 [label = ""& Offers" A: href="events_offers.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[1]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[2]/A[1]"];
+  1 -> 11 [label = ""Book a" A: href="/booking" title="Booking" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[1]/A[1]"];
+  1 -> 12 [label = ""Table" A: href="/booking" title="Booking" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[2]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[2]/A[1]"];
+  1 -> 13 [label = ""The" A: href="the_lodge.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[3]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[1]/A[1]"];
+  1 -> 13 [label = ""Lodge" A: href="the_lodge.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[3]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[2]/A[1]"];
+  1 -> 14 [label = ""Afternoon Tea " A: href="cocktails_in_the_dene.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[4]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[1]/A[1]"];
+  1 -> 14 [label = "A: href="cocktails_in_the_dene.html" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/DIV[4]/TABLE[1]/TBODY[1]/TR[1]/TD[1]/H2[1]/A[2]"];
+}
+

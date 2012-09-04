@@ -1,0 +1,272 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="../src/css/style.css"/>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/jquery.tablesorter.min.js"></script>
+
+<script>
+
+var rectColor = '#f00';
+
+function setUp(){
+  var state = "${state}";
+  loadImage($('#A')[0],'../browsers/firefox/screenshots/index.png');
+  loadImage($('#B')[0],'../browsers/ie/screenshots/index.png');
+
+  //loadDiff();
+  $('#dA').scroll(function(){
+	$('#dB').scrollTop(this.scrollTop);
+	$('#dB').scrollLeft(this.scrollLeft);
+  });
+  $('#dB').scroll(function(){
+        $('#dA').scrollTop(this.scrollTop);
+        $('#dA').scrollLeft(this.scrollLeft);
+  });
+
+}
+	 
+// Load image into canvas
+function loadImage(canvas, image_url, callback){
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = image_url;
+  img.onload = function(){
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img,0,0);
+    if(callback){ callback(); }
+  }
+}
+//Load cross browser difference on right side
+function loadDiff_ref(x0,y0,w,h){
+  var ctx = $('#A')[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+  }
+
+}
+//Load cross browser difference on right side
+function loadDiff(id,x0,y0,w,h){
+  var ctx = $(id)[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+	}
+}
+
+function draw4Coords(c1, c1a, c2, c2a) {
+  //clear
+  setUp();
+  
+  setTimeout(function () {
+	  //draw src nodes
+	  rectColor = '#f00';
+	  drawCoords("#A", c1); drawCoords("#B", c2);
+	  
+	  //draw tgt nodes
+	  rectColor = '#0f0';
+	  drawCoords("#A", c1a); drawCoords("#B", c2a);
+  }, 100);
+  
+}
+
+function drawCoords(id, temp){
+
+	if(temp == "(null)") return;
+
+	var x0=new Array();
+	var y0=new Array();
+	var w=new Array();
+	var h=new Array();
+	while(temp.indexOf('(')!=-1){
+		var currNo=temp.indexOf('(')+1;
+		var comma=temp.indexOf(',');
+		var x0Val=temp.substring(currNo,comma);
+		temp=temp.substring(comma+1,temp.length);
+		//alert(temp);
+		comma=temp.indexOf(',');
+		var y0Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		comma=temp.indexOf(',');
+		var x1Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		var width=x1Val-x0Val;	
+		comma=temp.indexOf(',');
+		var y1Val=temp.substring(0,temp.indexOf(')'));
+		var height=y1Val-y0Val;	
+		x0.push(x0Val);
+		y0.push(y0Val);
+		w.push(width);
+		h.push(height);
+	}
+	loadDiff(id, x0,y0,w,h);
+}
+function makeOSkin(){
+	if(document.getElementById("cType").value=='3'){
+		alert("X1XX");
+		mydiv = document.getElementById("dB");
+		mydiv.style.display = "none"; //to hide it
+		var canvas=$('#A')[0];
+		var ctx = canvas.getContext('2d');
+		ctx.globalAlpha = 0.5; 
+		loadImage(canvas,'ie0.png');
+		
+	}
+}
+function showHide(id){
+    $(".r"+id).toggle();
+	$("#i"+id).toggleClass('minus')
+}
+$(document).ready(setUp);
+</script>
+</head>
+<body>
+
+<div id="main">
+
+<div id="dA" style="overflow:scroll;width:50%;height:75%;float:left;">
+<canvas id="A"></canvas>
+</div>
+<div id="dB" style="overflow:scroll;width:50%;height:75%;float:left;">
+
+<!--canvas id="D"></canvas-->
+<canvas id="B"></canvas>
+</div>
+</div>
+<div style="clear:both;"></div>
+<table class="sclbl" style="height:5%">
+  <tr>
+    <th>Mozilla Firefox</th>
+	<th>Internet Explorer</th> 
+  </tr>
+
+</table>
+<div style="height:20%;width:100%;overflow-y:scroll">
+<center>
+
+<table id="lResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="150px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="250px">Message</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">Edge1</th>
+<th bgcolor="#CCCCCC">Edge2</th>
+</tr>
+</thead>
+
+
+
+</table>
+
+<table id="visResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="250px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">DOM XPath</th>
+<th bgcolor="#CCCCCC">Distance (EMD)</th>
+</tr>
+</thead>
+
+	<tr class='even'>
+	  <td id="v_0">0</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(215, 564, 371, 580)","(null)","(217, 576, 217, 576)","(null)");moveMarker("#v_0");'>(215, 564, 371, 580) - (217, 576, 217, 576)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV/DIV/H3/A - /HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV/DIV/H3/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_1">1</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(435, 564, 579, 580)","(null)","(437, 576, 437, 576)","(null)");moveMarker("#v_1");'>(435, 564, 579, 580) - (437, 576, 437, 576)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[2]/DIV/H3/A - /HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[2]/DIV/H3/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_2">2</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(655, 564, 806, 580)","(null)","(657, 576, 657, 576)","(null)");moveMarker("#v_2");'>(655, 564, 806, 580) - (657, 576, 657, 576)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[3]/DIV/H3/A - /HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[3]/DIV/H3/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_3">3</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(875, 564, 962, 580)","(null)","(877, 576, 877, 576)","(null)");moveMarker("#v_3");'>(875, 564, 962, 580) - (877, 576, 877, 576)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[4]/DIV/H3/A - /HTML/BODY/DIV/DIV/DIV[4]/DIV/DIV/DIV[4]/DIV/H3/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_4">4</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(215, 130, 254, 143)","(null)","(217, 136, 217, 136)","(null)");moveMarker("#v_4");'>(215, 130, 254, 143) - (217, 136, 217, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_5">5</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(278, 130, 417, 143)","(null)","(241, 136, 241, 136)","(null)");moveMarker("#v_5");'>(278, 130, 417, 143) - (241, 136, 241, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[2]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[2]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_6">6</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(441, 130, 569, 143)","(null)","(265, 136, 265, 136)","(null)");moveMarker("#v_6");'>(441, 130, 569, 143) - (265, 136, 265, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[3]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[3]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_7">7</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(593, 130, 727, 143)","(null)","(289, 136, 289, 136)","(null)");moveMarker("#v_7");'>(593, 130, 727, 143) - (289, 136, 289, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[4]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[4]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_8">8</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(751, 130, 820, 143)","(null)","(313, 136, 313, 136)","(null)");moveMarker("#v_8");'>(751, 130, 820, 143) - (313, 136, 313, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[5]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[5]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='odd'>
+	  <td id="v_9">9</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(844, 130, 952, 143)","(null)","(337, 136, 337, 136)","(null)");moveMarker("#v_9");'>(844, 130, 952, 143) - (337, 136, 337, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[6]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[6]/A</td>
+	  <td>0.000000</td>
+	</tr>
+	<tr class='even'>
+	  <td id="v_10">10</td>
+	  <td>VISIBILITY</td> 
+	  <td><a href='javascript:draw4Coords("(976, 130, 1084, 143)","(null)","(361, 136, 361, 136)","(null)");moveMarker("#v_10");'>(976, 130, 1084, 143) - (361, 136, 361, 136)</a></td>
+	  <td>/HTML/BODY/DIV/DIV/DIV[5]/OL/LI[7]/A - /HTML/BODY/DIV/DIV/DIV[5]/OL/LI[7]/A</td>
+	  <td>0.000000</td>
+	</tr>
+
+</table>
+<span id="marker">&gt;</span>
+</center>
+</div>
+<script>
+
+function moveMarker(item) {
+  $(item).prepend($("#marker"));
+}
+
+$(document).ready(function() { 
+  $("#lResults").tablesorter(); 
+  $("#visResults").tablesorter(); 
+} 
+); 
+</script>
+</body>
+</html>

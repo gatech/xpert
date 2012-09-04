@@ -1,0 +1,17 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  1 -> 2 [label = ""About Us" A: href="http://www.ubcsororities.com/about-us/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[2]/A[1]"];
+  2 -> 1 [label = ""Home" A: href="http://www.ubcsororities.com/home/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[1]/A[1]"];
+  1 -> 3 [label = ""How to Join" A: href="http://www.ubcsororities.com/how-to-join/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[3]/A[1]"];
+  1 -> 4 [label = ""News" A: href="http://www.ubcsororities.com/news/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[4]/A[1]"];
+  1 -> 5 [label = ""Housing" A: href="http://www.ubcsororities.com/housing/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[5]/A[1]"];
+  1 -> 6 [label = ""For Parents" A: href="http://www.ubcsororities.com/for-parents/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[6]/A[1]"];
+  1 -> 7 [label = ""FAQ" A: href="http://www.ubcsororities.com/faq/" click xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/DIV[2]/UL[1]/LI[7]/A[1]"];
+}
+

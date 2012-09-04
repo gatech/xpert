@@ -1,0 +1,33 @@
+<html>
+	<head>
+	<title>Overview: index</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt;}
+	</style>
+	<script>
+	function disablePreviousStateBtn() {
+  
+      if(parent.isStackEmpty())
+         document.getElementById("previousStateBtn").disabled = true;
+      else 
+        document.getElementById("previousStateBtn").disabled = false;
+    }
+	
+	</script>
+	</head>
+<body onLoad="disablePreviousStateBtn();">
+<div style="height: 28px">
+   <input type="button" id="previousStateBtn" onclick="parent.showPreviousState();" value="Previous State"/>
+   <span style="margin-left: 20px;">
+		Legend:&nbsp;
+		<span style="background: green;">&nbsp;New state&nbsp;</span>&nbsp;&nbsp;		
+		<span style="background: orange;">&nbsp;No state change&nbsp;</span>
+	</span>
+</div>
+<img border='0' src='../../screenshots/state3.png' />
+<div style="position: absolute; z-index: 10; left: 786px; top: 104px; width: 58px; height: 32px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 10; left: 788px; top: 104px; width: 57px; height: 32px; border: 2px solid orange;  " ></div>
+<script type="text/javascript"> 
+parent.updateState("state3");
+</script>
+</body></html>

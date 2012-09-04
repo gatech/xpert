@@ -1,0 +1,112 @@
+<html>
+	<head>
+	<script type="text/javascript" src="../../../src/js/prototype-1.4.0.js"></script> 	
+	<script type="text/javascript" src="../../../src/js/graph.js"></script> 
+	<title>Overview Report</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma, Arial; font-size: 10pt;}
+		img{ border: 1px solid black;}
+	</style>
+	</head>
+<body onload="generateGraph()">
+<div style='height: 20px; border-bottom: 1px solid black;'>
+	<nobr>
+	<a href="javascript:void(0)" onclick="loadState('index')">Initial State</a>
+	Current State: <b><span id="currentState">Loading</span></b>
+	<a href='javascript:void(0)' onclick="toggleGraph();">Toggle Graph</a>&nbsp;&nbsp;
+	<a href="javascript:void(0)" onclick="generateGraph()">Regenerate Graph</a>&nbsp;&nbsp;
+	Zoom: <span id="zoom"></span>
+	<a href="javascript:void(0)" onclick="zoom(10)">Zoom In</a>&nbsp;
+	<a href="javascript:void(0)" onclick="zoom(-10)"> Zoom Out</a>&nbsp;
+	<span style="margin-left: 20px;">
+		Legend:&nbsp;
+		<span style="background: green;">&nbsp;New state&nbsp;</span>&nbsp;&nbsp;
+		<span style="background: #00FFFF;">&nbsp;Previous state&nbsp;</span>&nbsp;&nbsp;
+		<span style="background: orange;">&nbsp;No state change&nbsp;</span>
+	</span>
+	</nobr>
+</div>
+
+<!-- graph -->
+<div id="graphPanel" style="display: none; position: absolute; z-index: 20; left: 0px; top: 21px;">
+<div id="index">
+	<a id="linkindex" href="javascript:void(0)" onclick="loadState('index')" title="http://m.bmvbs.de/Mobile/DE/Aktuelles/aktuelles_node.html">
+		<img src="../../screenshots/index.png" id="imgindex" width="80px" height="80px" onmouseover="stateZoom(this)" onmouseout="stateUnzoom(this)" /><br />
+		index
+	</a>
+</div>
+<div id="state1">
+	<a id="linkstate1" href="javascript:void(0)" onclick="loadState('state1')" title="http://m.bmvbs.de/Mobile/DE/Presse/presse_node.html">
+		<img src="../../screenshots/state1.png" id="imgstate1" width="80px" height="80px" onmouseover="stateZoom(this)" onmouseout="stateUnzoom(this)" /><br />
+		S1
+	</a>
+</div>
+<div id="state2">
+	<a id="linkstate2" href="javascript:void(0)" onclick="loadState('state2')" title="http://m.bmvbs.de/Mobile/DE/Mediathek/mediathek_node.html">
+		<img src="../../screenshots/state2.png" id="imgstate2" width="80px" height="80px" onmouseover="stateZoom(this)" onmouseout="stateUnzoom(this)" /><br />
+		S2
+	</a>
+</div>
+<div id="state3">
+	<a id="linkstate3" href="javascript:void(0)" onclick="loadState('state3')" title="http://m.bmvbs.de/Mobile/DE/Termine/termine_node.html">
+		<img src="../../screenshots/state3.png" id="imgstate3" width="80px" height="80px" onmouseover="stateZoom(this)" onmouseout="stateUnzoom(this)" /><br />
+		S3
+	</a>
+</div>
+<div id="state4">
+	<a id="linkstate4" href="javascript:void(0)" onclick="loadState('state4')" title="http://m.bmvbs.de/Mobile/DE/Themen/themen_node.html">
+		<img src="../../screenshots/state4.png" id="imgstate4" width="80px" height="80px" onmouseover="stateZoom(this)" onmouseout="stateUnzoom(this)" /><br />
+		S4
+	</a>
+</div>
+<canvas id="graph" style="border: 0px;"></canvas> 
+</div>
+
+<script type="text/javascript"> 
+
+var currentZoom = 100;
+zoom(0);
+
+var selectedState = "index";
+
+function generateGraph(){
+	initLayoutValues();
+	makeGraph();
+}
+
+function makeGraph() {
+	var g = new Graph();
+	
+		g.addEdge($('index'), $('state1'));
+		g.addEdge($('state1'), $('index'));
+		g.addEdge($('state1'), $('state2'));
+		g.addEdge($('state2'), $('index'));
+		g.addEdge($('state2'), $('state1'));
+		g.addEdge($('state2'), $('state3'));
+		g.addEdge($('state3'), $('index'));
+		g.addEdge($('state3'), $('state1'));
+		g.addEdge($('state3'), $('state2'));
+		g.addEdge($('state3'), $('state4'));
+		g.addEdge($('state4'), $('index'));
+		g.addEdge($('state4'), $('state1'));
+		g.addEdge($('state4'), $('state2'));
+		g.addEdge($('state4'), $('state3'));
+		g.addEdge($('state2'), $('state4'));
+		g.addEdge($('state1'), $('state3'));
+		g.addEdge($('state1'), $('state4'));
+		g.addEdge($('index'), $('state2'));
+		g.addEdge($('index'), $('state3'));
+		g.addEdge($('index'), $('state4'));
+		 
+	var layouter = new Graph.Layout.Spring(g);
+	layouter.layout();
+	 
+	$('graph').width = (getWidth() * (currentZoom / 100)) - 40;
+	$('graph').height = (getHeight() * (currentZoom / 100)) - 40;
+	
+	var renderer = new Graph.Renderer.Basic($('graph'), g);
+	renderer.draw();
+}
+</script>
+<iframe id="stateFrame" width="100%" height="100%" scrolling="no" src="states/index.html" style="border: 0px;"></iframe>
+</body></html>

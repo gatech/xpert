@@ -1,0 +1,16 @@
+digraph G {
+  1;
+  2;
+  3;
+  4;
+  5;
+  6;
+  7;
+  1 -> 2 [label = ""About Us" A: href="/ACT/about-us.html" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[1]/A[1]"];
+  1 -> 3 [label = ""Courses & Programs" A: href="/ACT/Courses.shtml" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[2]/A[1]"];
+  1 -> 4 [label = ""Research" A: href="/ACT/papers.shtml" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[3]/A[1]"];
+  1 -> 5 [label = ""Annual Reports" A: href="/ACT/ARHomePage.shtml" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[4]/A[1]"];
+  1 -> 6 [label = ""Useful Links" A: href="/ACT/Ulinks.shtml" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[5]/A[1]"];
+  1 -> 7 [label = ""Positions Vacant" A: href="/ACT/posVacant.shtml" click xpath /HTML[1]/BODY[1]/DIV[3]/DIV[3]/DIV[1]/UL[1]/LI[1]/UL[1]/LI[6]/A[1]"];
+}
+

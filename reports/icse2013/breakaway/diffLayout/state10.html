@@ -1,0 +1,346 @@
+<html>
+<head>
+<link type="text/css" rel="stylesheet" href="../src/css/style.css"/>
+<script type="text/javascript" src="../src/js/jquery.js"></script>
+<script type="text/javascript" src="../src/js/jquery.tablesorter.min.js"></script>
+
+<script>
+
+var rectColor = '#f00';
+
+function setUp(){
+  var state = "${state}";
+  loadImage($('#A')[0],'../browsers/firefox/screenshots/state10.png');
+  loadImage($('#B')[0],'../browsers/ie/screenshots/state10.png');
+
+  //loadDiff();
+  $('#dA').scroll(function(){
+	$('#dB').scrollTop(this.scrollTop);
+	$('#dB').scrollLeft(this.scrollLeft);
+  });
+  $('#dB').scroll(function(){
+        $('#dA').scrollTop(this.scrollTop);
+        $('#dA').scrollLeft(this.scrollLeft);
+  });
+
+}
+	 
+// Load image into canvas
+function loadImage(canvas, image_url, callback){
+  var ctx = canvas.getContext('2d');
+  var img = new Image();
+  img.src = image_url;
+  img.onload = function(){
+    canvas.height = img.height;
+    canvas.width = img.width;
+    ctx.drawImage(img,0,0);
+    if(callback){ callback(); }
+  }
+}
+//Load cross browser difference on right side
+function loadDiff_ref(x0,y0,w,h){
+  var ctx = $('#A')[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+  }
+
+}
+//Load cross browser difference on right side
+function loadDiff(id,x0,y0,w,h){
+  var ctx = $(id)[0].getContext('2d');
+  //Show things in both that are same
+  ctx.strokeStyle = rectColor;
+  for(var i=0;i<x0.length;i++){
+	ctx.strokeRect(x0[i],y0[i],w[i],h[i]);
+	}
+}
+
+function draw4Coords(c1, c1a, c2, c2a) {
+  //clear
+  setUp();
+  
+  setTimeout(function () {
+	  //draw src nodes
+	  rectColor = '#f00';
+	  drawCoords("#A", c1); drawCoords("#B", c2);
+	  
+	  //draw tgt nodes
+	  rectColor = '#0f0';
+	  drawCoords("#A", c1a); drawCoords("#B", c2a);
+  }, 100);
+  
+}
+
+function drawCoords(id, temp){
+
+	if(temp == "(null)") return;
+
+	var x0=new Array();
+	var y0=new Array();
+	var w=new Array();
+	var h=new Array();
+	while(temp.indexOf('(')!=-1){
+		var currNo=temp.indexOf('(')+1;
+		var comma=temp.indexOf(',');
+		var x0Val=temp.substring(currNo,comma);
+		temp=temp.substring(comma+1,temp.length);
+		//alert(temp);
+		comma=temp.indexOf(',');
+		var y0Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		comma=temp.indexOf(',');
+		var x1Val=temp.substring(0,comma);
+		temp=temp.substring(comma+1,temp.length);
+		var width=x1Val-x0Val;	
+		comma=temp.indexOf(',');
+		var y1Val=temp.substring(0,temp.indexOf(')'));
+		var height=y1Val-y0Val;	
+		x0.push(x0Val);
+		y0.push(y0Val);
+		w.push(width);
+		h.push(height);
+	}
+	loadDiff(id, x0,y0,w,h);
+}
+function makeOSkin(){
+	if(document.getElementById("cType").value=='3'){
+		alert("X1XX");
+		mydiv = document.getElementById("dB");
+		mydiv.style.display = "none"; //to hide it
+		var canvas=$('#A')[0];
+		var ctx = canvas.getContext('2d');
+		ctx.globalAlpha = 0.5; 
+		loadImage(canvas,'ie0.png');
+		
+	}
+}
+function showHide(id){
+    $(".r"+id).toggle();
+	$("#i"+id).toggleClass('minus')
+}
+$(document).ready(setUp);
+</script>
+</head>
+<body>
+
+<div id="main">
+
+<div id="dA" style="overflow:scroll;width:50%;height:75%;float:left;">
+<canvas id="A"></canvas>
+</div>
+<div id="dB" style="overflow:scroll;width:50%;height:75%;float:left;">
+
+<!--canvas id="D"></canvas-->
+<canvas id="B"></canvas>
+</div>
+</div>
+<div style="clear:both;"></div>
+<table class="sclbl" style="height:5%">
+  <tr>
+    <th>Mozilla Firefox</th>
+	<th>Internet Explorer</th> 
+  </tr>
+
+</table>
+<div style="height:20%;width:100%;overflow-y:scroll">
+<center>
+
+<table id="lResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="150px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="250px">Message</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">Edge1</th>
+<th bgcolor="#CCCCCC">Edge2</th>
+</tr>
+</thead>
+
+
+
+<tr class='cluster'><td id='i1' class='plus' onclick='showHide("1")'></td><td colspan='5'>Layout Issue-1: Element relocation to new parent</td></tr>
+	<tr class='odd r1' style='display:none'>
+	  <td id="item_1_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Different parent nodes</td>
+		  <td><a href='javascript:draw4Coords("(469, 344, 897, 928)","(458, 292, 910, 1364)","(662, 344, 1092, 942)","(651, 298, 1110, 1374)");moveMarker("#item_1_1");'>(469, 344, 897, 928)-(458, 292, 910, 1364) 
+	  , (662, 344, 1092, 942)-(651, 298, 1110, 1374)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV/DIV<-/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV/DIV<-/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV</td>
+		</tr>
+	<tr class='cluster'><td id='i2' class='plus' onclick='showHide("2")'></td><td colspan='5'>Layout Issue-2: Element relocation to new parent</td></tr>
+	<tr class='odd r2' style='display:none'>
+	  <td id="item_2_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Missing parent in second</td>
+		  <td><a href='javascript:draw4Coords("(0, 0, 910, 1412)","(0, 0, 930, 1412)","(null)","(null)");moveMarker("#item_2_1");'>(0, 0, 910, 1412)-(0, 0, 930, 1412) 
+	  , (null)-(null)</td>
+		  <td>/HTML/BODY/TABLE<-/HTML/BODY</td>
+			  <td></td>
+		</tr>
+		<tr class='even r2' style='display:none'>
+	  <td id="item_2_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Missing sibling in second</td>
+		  <td><a href='javascript:draw4Coords("(0, 0, 910, 1412)","(458, 292, 930, 1364)","(null)","(null)");moveMarker("#item_2_2");'>(0, 0, 910, 1412)-(458, 292, 930, 1364) 
+	  , (null)-(null)</td>
+		  <td>/HTML/BODY/TABLE->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV</td>
+			  <td></td>
+		</tr>
+		<tr class='odd r2' style='display:none'>
+	  <td id="item_2_3">3</td>
+	  <td>SIBLING</td> 
+	  <td>Missing sibling in second</td>
+		  <td><a href='javascript:draw4Coords("(458, 292, 930, 1364)","(0, 0, 910, 1412)","(null)","(null)");moveMarker("#item_2_3");'>(458, 292, 930, 1364)-(0, 0, 910, 1412) 
+	  , (null)-(null)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV->/HTML/BODY/TABLE</td>
+			  <td></td>
+		</tr>
+	<tr class='cluster'><td id='i3' class='plus' onclick='showHide("3")'></td><td colspan='5'>Layout Issue-3: Element relocation to new parent</td></tr>
+	<tr class='odd r3' style='display:none'>
+	  <td id="item_3_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Different parent nodes</td>
+		  <td><a href='javascript:draw4Coords("(458, 292, 910, 1364)","(458, 292, 930, 1364)","(651, 298, 1111, 1380)","(193, 298, 1111, 1380)");moveMarker("#item_3_1");'>(458, 292, 910, 1364)-(458, 292, 930, 1364) 
+	  , (651, 298, 1111, 1380)-(193, 298, 1111, 1380)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]<-/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]<-/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE</td>
+		</tr>
+		<tr class='even r3' style='display:none'>
+	  <td id="item_3_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Missing sibling in first</td>
+		  <td><a href='javascript:draw4Coords("(null)","(null)","(193, 298, 651, 1380)","(651, 298, 1111, 1380)");moveMarker("#item_3_2");'>(null)-(null) 
+	  , (193, 298, 651, 1380)-(651, 298, 1111, 1380)</td>
+		  <td></td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]</td>
+		</tr>
+		<tr class='odd r3' style='display:none'>
+	  <td id="item_3_3">3</td>
+	  <td>SIBLING</td> 
+	  <td>Missing sibling in first</td>
+		  <td><a href='javascript:draw4Coords("(null)","(null)","(651, 298, 1111, 1380)","(193, 298, 651, 1380)");moveMarker("#item_3_3");'>(null)-(null) 
+	  , (651, 298, 1111, 1380)-(193, 298, 651, 1380)</td>
+		  <td></td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD</td>
+		</tr>
+	<tr class='cluster'><td id='i4' class='plus' onclick='showHide("4")'></td><td colspan='5'>Layout Issue-4: Element relocation to new parent</td></tr>
+	<tr class='odd r4' style='display:none'>
+	  <td id="item_4_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Different parent nodes</td>
+		  <td><a href='javascript:draw4Coords("(458, 292, 930, 1364)","(0, 0, 930, 1412)","(651, 298, 1110, 1374)","(651, 298, 1111, 1380)");moveMarker("#item_4_1");'>(458, 292, 930, 1364)-(0, 0, 930, 1412) 
+	  , (651, 298, 1110, 1374)-(651, 298, 1111, 1380)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV<-/HTML/BODY</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]/DIV<-/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD[2]</td>
+		</tr>
+	<tr class='cluster'><td id='i5' class='plus' onclick='showHide("5")'></td><td colspan='5'>Layout Issue-5: Element property disruption</td></tr>
+	<tr class='odd r5' style='display:none'>
+	  <td id="item_5_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 839, 448, 1175)","(10, 595, 448, 829)","(203, 845, 641, 1181)","(203, 601, 530, 835)");moveMarker("#item_5_1");'>(10, 839, 448, 1175)-(10, 595, 448, 829) 
+	  , (203, 845, 641, 1181)-(203, 601, 530, 835)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]</td>
+		</tr>
+		<tr class='even r5' style='display:none'>
+	  <td id="item_5_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 839, 448, 1175)","(10, 302, 448, 585)","(203, 845, 641, 1181)","(203, 308, 628, 591)");moveMarker("#item_5_2");'>(10, 839, 448, 1175)-(10, 302, 448, 585) 
+	  , (203, 845, 641, 1181)-(203, 308, 628, 591)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P</td>
+		</tr>
+		<tr class='odd r5' style='display:none'>
+	  <td id="item_5_3">3</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 302, 448, 585)","(10, 839, 448, 1175)","(203, 308, 628, 591)","(203, 845, 641, 1181)");moveMarker("#item_5_3");'>(10, 302, 448, 585)-(10, 839, 448, 1175) 
+	  , (203, 308, 628, 591)-(203, 845, 641, 1181)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]</td>
+		</tr>
+		<tr class='even r5' style='display:none'>
+	  <td id="item_5_4">4</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 595, 448, 829)","(10, 839, 448, 1175)","(203, 601, 530, 835)","(203, 845, 641, 1181)");moveMarker("#item_5_4");'>(10, 595, 448, 829)-(10, 839, 448, 1175) 
+	  , (203, 601, 530, 835)-(203, 845, 641, 1181)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[3]</td>
+		</tr>
+	<tr class='cluster'><td id='i6' class='plus' onclick='showHide("6")'></td><td colspan='5'>Layout Issue-6: Element property disruption</td></tr>
+	<tr class='odd r6' style='display:none'>
+	  <td id="item_6_1">1</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 302, 448, 585)","(10, 595, 448, 829)","(203, 308, 628, 591)","(203, 601, 530, 835)");moveMarker("#item_6_1");'>(10, 302, 448, 585)-(10, 595, 448, 829) 
+	  , (203, 308, 628, 591)-(203, 601, 530, 835)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]</td>
+		</tr>
+		<tr class='even r6' style='display:none'>
+	  <td id="item_6_2">2</td>
+	  <td>SIBLING</td> 
+	  <td>Right Edge alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(10, 595, 448, 829)","(10, 302, 448, 585)","(203, 601, 530, 835)","(203, 308, 628, 591)");moveMarker("#item_6_2");'>(10, 595, 448, 829)-(10, 302, 448, 585) 
+	  , (203, 601, 530, 835)-(203, 308, 628, 591)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P[2]->/HTML/BODY/TABLE/TBODY/TR[4]/TD/TABLE/TBODY/TR/TD/DIV/P</td>
+		</tr>
+	<tr class='cluster'><td id='i7' class='plus' onclick='showHide("7")'></td><td colspan='5'>Layout Issue-7: Element property disruption</td></tr>
+	<tr class='odd r7' style='display:none'>
+	  <td id="item_7_1">1</td>
+	  <td>CONTAINS</td> 
+	  <td>Top alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(0, 1375, 910, 1401)","(0, 1364, 910, 1412)","(193, 1380, 1111, 1406)","(193, 1380, 1111, 1425)");moveMarker("#item_7_1");'>(0, 1375, 910, 1401)-(0, 1364, 910, 1412) 
+	  , (193, 1380, 1111, 1406)-(193, 1380, 1111, 1425)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[5]/TD/DIV<-/HTML/BODY/TABLE/TBODY/TR[5]/TD</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[5]/TD/DIV<-/HTML/BODY/TABLE/TBODY/TR[5]/TD</td>
+		</tr>
+		<tr class='even r7' style='display:none'>
+	  <td id="item_7_2">2</td>
+	  <td>CONTAINS</td> 
+	  <td>Vertical middle alignment issue</td>
+		  <td><a href='javascript:draw4Coords("(0, 1375, 910, 1401)","(0, 1364, 910, 1412)","(193, 1380, 1111, 1406)","(193, 1380, 1111, 1425)");moveMarker("#item_7_2");'>(0, 1375, 910, 1401)-(0, 1364, 910, 1412) 
+	  , (193, 1380, 1111, 1406)-(193, 1380, 1111, 1425)</td>
+		  <td>/HTML/BODY/TABLE/TBODY/TR[5]/TD/DIV<-/HTML/BODY/TABLE/TBODY/TR[5]/TD</td>
+			  <td>/HTML/BODY/TABLE/TBODY/TR[5]/TD/DIV<-/HTML/BODY/TABLE/TBODY/TR[5]/TD</td>
+		</tr>
+	</table>
+
+<table id="visResults" class="tablesorter">
+<thead>
+<tr>
+<th bgcolor="#CCCCCC" width="15px"></th>
+<th bgcolor="#CCCCCC" width="250px">Issue Type</th>
+<th bgcolor="#CCCCCC" width="300px">Screen Location</th>
+<th bgcolor="#CCCCCC">DOM XPath</th>
+<th bgcolor="#CCCCCC">Distance (EMD)</th>
+</tr>
+</thead>
+
+
+</table>
+<span id="marker">&gt;</span>
+</center>
+</div>
+<script>
+
+function moveMarker(item) {
+  $(item).prepend($("#marker"));
+}
+
+$(document).ready(function() { 
+  $("#lResults").tablesorter(); 
+  $("#visResults").tablesorter(); 
+} 
+); 
+</script>
+</body>
+</html>

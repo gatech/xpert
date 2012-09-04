@@ -1,0 +1,49 @@
+<html>
+	<head>
+	<title>Overview: index</title>
+	<style type="text/css">
+		body {margin: 0px; padding: 0px; font-family: Tahoma; font-size: 10pt;}
+	</style>
+	<script>
+	function disablePreviousStateBtn() {
+  
+      if(parent.isStackEmpty())
+         document.getElementById("previousStateBtn").disabled = true;
+      else 
+        document.getElementById("previousStateBtn").disabled = false;
+    }
+	
+	</script>
+	</head>
+<body onLoad="disablePreviousStateBtn();">
+<div style="height: 28px">
+   <input type="button" id="previousStateBtn" onclick="parent.showPreviousState();" value="Previous State"/>
+   <span style="margin-left: 20px;">
+		Legend:&nbsp;
+		<span style="background: green;">&nbsp;New state&nbsp;</span>&nbsp;&nbsp;		
+		<span style="background: orange;">&nbsp;No state change&nbsp;</span>
+	</span>
+</div>
+<img border='0' src='../../screenshots/index.png' />
+<div style="position: absolute; z-index: 20; left: 978px; top: 155px; width: 124px; height: 22px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state1.html'"></div>
+<div style="position: absolute; z-index: 20; left: 831px; top: 155px; width: 124px; height: 22px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state2.html'"></div>
+<div style="position: absolute; z-index: 10; left: 190px; top: 189px; width: 42px; height: 32px; border: 2px solid orange;  " ></div>
+<div style="position: absolute; z-index: 20; left: 254px; top: 189px; width: 124px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state3.html'"></div>
+<div style="position: absolute; z-index: 20; left: 400px; top: 189px; width: 125px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state4.html'"></div>
+<div style="position: absolute; z-index: 20; left: 547px; top: 189px; width: 140px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state5.html'"></div>
+<div style="position: absolute; z-index: 20; left: 709px; top: 189px; width: 102px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state6.html'"></div>
+<div style="position: absolute; z-index: 20; left: 833px; top: 189px; width: 76px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state7.html'"></div>
+<div style="position: absolute; z-index: 20; left: 931px; top: 189px; width: 68px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state8.html'"></div>
+<div style="position: absolute; z-index: 20; left: 1021px; top: 189px; width: 66px; height: 32px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state9.html'"></div>
+<div style="position: absolute; z-index: 20; left: 188px; top: 548px; width: 88px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state10.html'"></div>
+<div style="position: absolute; z-index: 20; left: 188px; top: 584px; width: 140px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state10.html'"></div>
+<div style="position: absolute; z-index: 20; left: 428px; top: 548px; width: 97px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state11.html'"></div>
+<div style="position: absolute; z-index: 20; left: 428px; top: 584px; width: 102px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state12.html'"></div>
+<div style="position: absolute; z-index: 20; left: 668px; top: 548px; width: 53px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state13.html'"></div>
+<div style="position: absolute; z-index: 20; left: 668px; top: 584px; width: 108px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state13.html'"></div>
+<div style="position: absolute; z-index: 20; left: 908px; top: 548px; width: 198px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state14.html'"></div>
+<div style="position: absolute; z-index: 20; left: 908px; top: 579px; width: 20px; height: 30px; border: 2px solid green;  cursor: pointer;" onclick="parent.pushStack();location.href='state14.html'"></div>
+<script type="text/javascript"> 
+parent.updateState("index");
+</script>
+</body></html>
