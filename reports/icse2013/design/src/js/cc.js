@@ -45,6 +45,31 @@ function showVisualDifferences() {
 	}
 }
 
+
+function showLayoutDifferences() {
+	if (document.getElementById("clickedNode").value != "") {
+		document.getElementById("cm1").style.visibility = "hidden";
+		document.getElementById("cm").style.height = "0%";
+		document.getElementById("cm1").style.size = "10px";
+		document.getElementById("cm2").innerHTML = "";
+		document.getElementById("cm2").style.height = "0%";
+		document.getElementById("cm3").innerHTML = "";
+		document.getElementById("cm3").style.height = "0%";
+		document.getElementById("cm41").innerHTML = "";
+		document.getElementById("cm41").style.height = "0%";
+		document.getElementById("cm42").innerHTML = "<iframe style='border: 1px solid' src='diffLayout/index.html?state="
+				+ document.getElementById("state").value
+				+ "' id='e3' width='100%' height='100%'  name='crossbrowser'/>";
+		document.getElementById("cm42").style.height = "94%";
+
+		document.getElementById("li_diffgraph").className = "";
+		document.getElementById("li_layoutcbd").className = "current";
+	} else {
+		alert("Please select a state to see its Layout Differences");
+	}
+}
+
+
 function showDOMDifferences() {
 	if (document.getElementById("clickedNode").value != "") {
 		document.getElementById("cm1").style.visibility = "hidden";

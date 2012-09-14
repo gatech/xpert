@@ -35,12 +35,7 @@
 	<div id="ddtabs5">
 		<ul  style="border: 0;" class="tabs">
 			<li id="li_diffgraph" class="current"><a rel="cm1" id="dg" onclick="showDiffGraph();">Differential Graph</a></li>
-			<li id="li_br1" hidden ><a  rel="cm2" id="br1" onclick="showBrowser1Graph();">firefox Graph</a></li>
-			<li id="li_br2" hidden ><a rel="cm3" id="br2" onclick="showBrowser2Graph();">ie Graph</a></li>
-			<li id="li_viscbd" class="dis" ><a rel="cm41" class="dis" id="viscbd" onclick="showVisualDifferences();">Visual Differences</a></li>
-			<li id="li_domcbd" class="dis" ><a rel="cm42" class="dis" id="domcbd" onclick="showDOMDifferences();">DOM Differences</a></li>
-			<!-- li id="li_viscbd_dis"><a href="#" rel="cm41" id="viscbd" style="color:white;">Visual Differences</a></li>
-			<li id="li_domcbd_dis"><a href="#" rel="cm42" id="domcbd" style="color:white;">DOM Differences</a></li-->
+			<li id="li_layoutcbd" class="dis" ><a rel="cm42" class="dis" id="domcbd" onclick="showLayoutDifferences();">Layout Differences</a></li>
 		</ul>
 		<img id="sig_diffview" src="./src/img/green.png" style="position:absolute;left:70%;top:-5px;" height="35px" onclick="diffView();"></img>
 		<a id="sigtxt_diffview" href="#" style="position:absolute;left:73%;top:-1px;background-color:#CCCCCC;" onclick="diffView();">Differences View</a>
@@ -66,8 +61,8 @@
 			<div style="clear:both;"></div>
 			<table class="header" style="height:5%;">
 			  <tr>
-			    <td><h4>firefox [${state.name}] <label id="br1_label"></label></h4></td>
-				<td><h4>ie [ ${state.name}] <label id="br2_label"></label></h4></td>
+			    <td><h4>firefox<label id="br1_label"></label></h4></td>
+				<td><h4>ie<label id="br2_label"></label></h4></td>
 			  </tr>
 			
 			</table>

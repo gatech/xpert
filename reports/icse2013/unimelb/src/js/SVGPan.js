@@ -174,14 +174,7 @@ function loadVisState(path) {
 }
 
 function selState(state,clickedNode,path,browsername) {
-	
 	if(top.document.getElementById("perspective").value=="diff"){
-		top.document.getElementById("li_viscbd").hidden = false;
-		top.document.getElementById("li_viscbd").className = "";
-		top.document.getElementById("viscbd").className = "";
-		top.document.getElementById("li_domcbd").hidden = false;
-		top.document.getElementById("li_domcbd").className = "";
-		top.document.getElementById("domcbd").className = "";
 		var prevState = top.document.getElementById("state").value;
 		top.document.getElementById("state").value = state;
 		top.document.getElementById("prevClickedNode").value = top.document.getElementById("clickedNode").value;
