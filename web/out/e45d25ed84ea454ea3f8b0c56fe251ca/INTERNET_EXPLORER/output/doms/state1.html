@@ -1,0 +1,14 @@
+<HTML><HEAD><TITLE>Conference</TITLE>
+<SCRIPT type=text/javascript src="script.js"></SCRIPT>
+<LINK rel=stylesheet type=text/css href="style.css"></HEAD>
+<BODY onload="loadMenu('home')">
+<DIV class=box>
+<H1>CONFERENCE</H1>
+<DIV class=menu><IMG id=home onclick=listItems(event) name=home src="home.png"> <IMG style="DISPLAY: none" id=dates onclick=listItems(event) name=dates src="dates.png"> <IMG id=papers onclick=listItems(event) name=papers src="papers.png"> </DIV>
+<HR>
+
+<DIV id=detail>
+<H3>Key Dates</H3>Main conf: Mon, DD, YYYY<BR>Pre-conf : Mon, DD, YYYY<BR>Post-conf: Mon, DD, YYYY</DIV>
+<HR>
+
+<DIV class=footer><A onclick="loadMenu('home')" name=home>Home</A> <A style="DISPLAY: none" onclick="loadMenu('dates')" name=dates>Dates</A> <A onclick="loadMenu('papers')" name=papers>Accepted Papers</A> </DIV></DIV></BODY></HTML>

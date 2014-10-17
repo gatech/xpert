@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crawl overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="CrawlJax">
+<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="../css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+<link href="../css/shCore.css" rel="stylesheet" type="text/css" />
+<link href="../css/shCoreDefault.css" rel="stylesheet" type="text/css" />
+<style>
+.tooltip-inner {
+	max-width: 300px;
+	word-wrap: break-word;
+}
+
+body {
+	padding-top: 60px; /* 60px to make the container go all the way to the bottom of the topbar */
+}
+</style>
+</head>
+<body>
+	<nav class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+							<a class="brand" href="../index.html#graph">Crawl overview</a>
+						<ul class="nav">
+									<li class="active" ><a href="#">State inspector</a></li>
+							</ul>
+			<div class="nav pull-right">
+				<a href="#" class="btn graphBtn" id='pauseButton' data-toggle="tooltip" data-placement="bottom" title="Pause the graph movement"><i class="icon-pause"></i></a>
+				<a href="#" class="btn graphBtn" rel="popover" data-placement="bottom"  data-original-title="What to do"><i class='icon-question-sign'></i></a>
+				<div style="display: none" id='popup-content'>
+					<p>You can double click a state to inspect it further.</p>
+					<p>Clicking an edge gives more details on the state transition.</p>
+					<p>Use your mouse to zoom in and out by scrolling, or drag the states and view around.</p>
+				</div>
+				<a href="result.json" class="btn" data-toggle="tooltip" data-placement="bottom" title="Download result as JSON"><i class='icon-download'></i></a>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</nav>	<div class='container' >
+		<h1>Summary of state3</h1>
+		<table class="table table-bordered table-striped">
+			<colgroup>
+				<col class="span1">
+				<col class="span7">
+			</colgroup>
+			<tbody>
+				<tr>
+					<th>URL</th>
+					<td><a href='http://bear.cc.gatech.edu/conference/index.html'>http://bear.cc.gatech.edu/conference/index.html</a></td>
+				</tr>
+				<tr>
+					<th>Fan in</th>
+					<td>2</td>
+				</tr>
+				<tr>
+					<th>Fan out</th>
+					<td>0</td>
+				</tr>
+				<tr>
+					<th>Interaction elements</th>
+					<td>0</td>
+				</tr>
+				<tr>
+					<th>Failed events</th>
+					<td>-</td>
+			</tbody>
+		</table>
+		<ul id='tabs' class="nav nav-tabs">
+			<li class="active">
+				<a href="#screenshot">Screenshot</a>
+			</li>
+			<li>
+				<a href="#dom">Captured DOM</a>
+			</li>	
+			<li>
+				<a href="#interactions">Interactions</a>
+			</li>			
+		</ul>
+		<div class="tab-content">
+			<div class="tab-pane active" style="position: relative;" id='screenshot'>			
+				<img style='max-width: none;' border='0' src='../screenshots/state3.jpg' /> 
+							</div>
+			<div class="tab-pane" id='dom'>
+				<h2>Captured DOM</h2>
+				<pre class='brush: html'>&lt;HTML&gt;&lt;HEAD&gt;&lt;TITLE&gt;Conference&lt;/TITLE&gt;
+&lt;SCRIPT type=text/javascript src=&quot;script.js&quot;&gt;&lt;/SCRIPT&gt;
+&lt;LINK rel=stylesheet type=text/css href=&quot;style.css&quot;&gt;&lt;/HEAD&gt;
+&lt;BODY onload=&quot;loadMenu('home')&quot;&gt;
+&lt;DIV class=box&gt;
+&lt;H1&gt;CONFERENCE&lt;/H1&gt;
+&lt;DIV class=menu&gt;&lt;IMG id=home onclick=listItems(event) name=home src=&quot;home.png&quot;&gt; &lt;IMG id=dates onclick=listItems(event) name=dates src=&quot;dates.png&quot;&gt; &lt;IMG style=&quot;DISPLAY: none&quot; id=papers onclick=listItems(event) name=papers src=&quot;papers.png&quot;&gt; &lt;/DIV&gt;
+&lt;HR&gt;
+
+&lt;DIV id=detail&gt;
+&lt;H3&gt;Accepted Papers&lt;/H3&gt;&lt;SPAN id=stats&gt;undefined papers accepted!&lt;/SPAN&gt;
+&lt;UL id=items&gt;
+&lt;LI&gt;Paper Title, Author&lt;/LI&gt;
+&lt;LI&gt;T&iacute;tulo del art&iacute;culo, Autor&lt;/LI&gt;
+&lt;LI&gt;Titolo della carta, Autore&lt;/LI&gt;
+&lt;LI&gt;Titre de l'article, Auteur&lt;/LI&gt;&lt;/UL&gt;&lt;/DIV&gt;
+&lt;HR&gt;
+
+&lt;DIV class=footer&gt;&lt;A onclick=&quot;loadMenu('home')&quot; name=home&gt;Home&lt;/A&gt; &lt;A onclick=&quot;loadMenu('dates')&quot; name=dates&gt;Dates&lt;/A&gt; &lt;A style=&quot;DISPLAY: none&quot; onclick=&quot;loadMenu('papers')&quot; name=papers&gt;Accepted Papers&lt;/A&gt; &lt;/DIV&gt;&lt;/DIV&gt;&lt;/BODY&gt;&lt;/HTML&gt;</pre>
+			</div>
+			<div class="tab-pane" id='interactions'>
+				<h2>Interactions</h2>
+				<table class="table table-bordered table-striped">
+					<tbody>
+						<tr>
+							<th>Xpath</th>
+							<th>Destination</tg>
+						</tr>
+											</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="../lib/shCore.js"></script>
+	<script type="text/javascript" src="../lib/shBrushXml.js"></script>
+	<script type="text/javascript" src="../lib/jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="../lib/bootstrap.min.js"></script>
+	<script type="text/javascript">
+    	$(document).ready(function() {
+			SyntaxHighlighter.all()
+
+			$('#tabs a').click(function (e) {
+		  		e.preventDefault();
+		  		$(this).tab('show');
+			})
+		});
+    	
+    	$('.hovers').tooltip({
+    	    placement: function(a, element) {
+    	        var position = $(element).position();
+    	        if (position.left > 515) {
+    	            return "left";
+    	        }
+    	        if (position.left < 515) {
+    	            return "right";
+    	        }
+    	        if (position.top < 110){
+    	            return "bottom";
+    	        }
+    	        return "top";
+    	    }
+    	});
+	</script>
+</body>
+</html>

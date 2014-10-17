@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>X-PERT</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+
+      .form-modelgen {
+        max-width: 460px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+
+      label{
+        font-size: 1.4em;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+
+      <form class="form-modelgen" method="POST" action="/crawl">
+
+      <!-- Form Name -->
+      <h2>X-PERT Model Generation</h2>
+
+      <!-- URL -->
+      <div class="form-group">
+        <label for="url">URL</label>
+        <input id="url" name="url" type="text" placeholder="http://example.com" class="form-control  input-lg" required="">
+      </div>
+
+      <!-- Browsers -->
+      <div class="form-group">
+        <label for="action" class="control-label">Browsers</label>
+        <select multiple class="form-control">
+          <option>Internet Explorer</option>
+          <option>Mozilla Firefox</option>
+          <option>Google Chrome</option>
+          <option>Apple Safari</option>
+        </select>
+        <p class="help-block">Ctrl+Click (or CMD+Click) to select multiple browsers.</p>
+      </div>
+
+      <!-- Default Actions -->
+      <div class="form-group">
+        <label for="click">Default Actions</label>
+        <div style="padding-left:10px;">
+          <div>
+            <input type="checkbox" name="click" id="click-0" value="Links &lt; A &gt;" checked>
+          Links &lt; A &gt;
+          </div>
+          <div>
+            <input type="checkbox" name="click" id="click-1" value="Buttons &lt; button &gt;, &lt; input type=" submit"&gt;"="" checked>
+            Buttons &lt; button &gt;, &lt; input type="submit"&gt;
+          </div>
+          <div>
+            <input type="checkbox" name="click" id="click-2" value="Images &lt; img &gt;" checked>
+            Images &lt; img &gt;
+          </div>
+        </div>
+      </div>
+
+      <!-- Custom Actions -->
+      <div class="form-group">
+        <label for="action" class="control-label">Custom Actions <button id="addCustom" name="addCustom" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button></label>
+        <div class="input-group">
+          <input id="action" name="action" class="form-control input-lg" placeholder="widget selector (e.g. id=&quot;foo&quot;)" type="text">
+          <div class="input-group-addon">
+            <select class="input-sm">
+              <option>Click</option>
+              <option>Don't Click</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Button -->
+      <div class="form-group">
+          <button id="submit" name="submit" class="btn btn-primary btn-lg btn-block">Start Crawl</button>
+      </div>
+
+      </form>
+
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  </body>
+</html>

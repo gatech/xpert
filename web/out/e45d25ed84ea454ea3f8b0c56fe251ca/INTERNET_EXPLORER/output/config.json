@@ -1,0 +1,96 @@
+{
+  "url" : "http://bear.cc.gatech.edu/conference/index.html",
+  "browserConfig" : {
+    "browsertype" : "INTERNET_EXPLORER",
+    "numberOfBrowsers" : 1,
+    "browserBuilder" : { },
+    "remoteHubUrl" : null,
+    "langOrNull" : null,
+    "defaultBuilder" : true
+  },
+  "plugins" : [ "CrawlOverview" ],
+  "proxyConfiguration" : {
+    "port" : -1,
+    "hostname" : "none",
+    "type" : "NOTHING"
+  },
+  "crawlRules" : {
+    "crawlEvents" : [ "click" ],
+    "invariants" : [ ],
+    "oracleComparators" : [ {
+      "preConditions" : [ ],
+      "id" : "style-attr-ignore",
+      "oracle" : { }
+    }, {
+      "preConditions" : [ ],
+      "id" : "style-ignore",
+      "oracle" : { }
+    }, {
+      "preConditions" : [ ],
+      "id" : "script-ignore",
+      "oracle" : { }
+    } ],
+    "ignoredFrameIdentifiers" : [ ],
+    "preCrawlConfig" : {
+      "waitConditions" : [ ],
+      "crawlConditions" : [ ],
+      "includedElements" : [ {
+        "tagName" : "A",
+        "id" : "id601016216",
+        "eventType" : "click",
+        "eventableCondition" : null,
+        "withXpathExpression" : null
+      }, {
+        "tagName" : "BUTTON",
+        "id" : "id1663950471",
+        "eventType" : "click",
+        "eventableCondition" : null,
+        "withXpathExpression" : null
+      }, {
+        "tagName" : "IMG",
+        "id" : "id1483514863",
+        "eventType" : "click",
+        "eventableCondition" : null,
+        "withXpathExpression" : null
+      } ],
+      "excludedElements" : [ ],
+      "filterAttributeNames" : [ "closure_hashcode_(\\w)*", "jquery[0-9]+" ]
+    },
+    "randomInputInForms" : true,
+    "inputSpecification" : {
+      "crawlElements" : [ ],
+      "formFieldNames" : { },
+      "formFieldValues" : { }
+    },
+    "testInvariantsWhileCrawling" : true,
+    "clickOnce" : false,
+    "randomizeCandidateElements" : false,
+    "crawlHiddenAnchors" : false,
+    "waitAfterReloadUrl" : 500,
+    "waitAfterEvent" : 500,
+    "allCrawlElements" : [ {
+      "tagName" : "A",
+      "id" : "id601016216",
+      "eventType" : "click",
+      "eventableCondition" : null,
+      "withXpathExpression" : null
+    }, {
+      "tagName" : "BUTTON",
+      "id" : "id1663950471",
+      "eventType" : "click",
+      "eventableCondition" : null,
+      "withXpathExpression" : null
+    }, {
+      "tagName" : "IMG",
+      "id" : "id1483514863",
+      "eventType" : "click",
+      "eventableCondition" : null,
+      "withXpathExpression" : null
+    } ]
+  },
+  "maximumStates" : 10,
+  "maximumRuntime" : 3600000,
+  "maximumDepth" : 2,
+  "stateVertexFactory" : null,
+  "outputDir" : "Z:\\xpert\\web\\out\\e45d25ed84ea454ea3f8b0c56fe251ca\\INTERNET_EXPLORER\\.\\output"
+}

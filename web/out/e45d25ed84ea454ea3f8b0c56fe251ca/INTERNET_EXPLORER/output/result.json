@@ -1,0 +1,163 @@
+{
+  "states" : {
+    "state3" : {
+      "name" : "state3",
+      "url" : "http://bear.cc.gatech.edu/conference/index.html",
+      "candidateElements" : [ ],
+      "fanIn" : 2,
+      "fanOut" : 0,
+      "id" : 3,
+      "failedEvents" : [ ]
+    },
+    "state1" : {
+      "name" : "state1",
+      "url" : "http://bear.cc.gatech.edu/conference/index.html",
+      "candidateElements" : [ {
+        "top" : 265,
+        "left" : 31,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+        "width" : 37,
+        "height" : 16
+      }, {
+        "top" : 16,
+        "left" : 11,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+        "width" : 35,
+        "height" : 16
+      }, {
+        "top" : 265,
+        "left" : 84,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+        "width" : 107,
+        "height" : 16
+      }, {
+        "top" : 72,
+        "left" : 41,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]",
+        "width" : 83,
+        "height" : 32
+      }, {
+        "top" : -2,
+        "left" : -2,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]",
+        "width" : 83,
+        "height" : 32
+      }, {
+        "top" : 107,
+        "left" : 41,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[3]",
+        "width" : 83,
+        "height" : 32
+      } ],
+      "fanIn" : 1,
+      "fanOut" : 2,
+      "id" : 1,
+      "failedEvents" : [ "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]", "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]" ]
+    },
+    "index" : {
+      "name" : "index",
+      "url" : "http://bear.cc.gatech.edu/conference/index.html",
+      "candidateElements" : [ {
+        "top" : 16,
+        "left" : 11,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+        "width" : 37,
+        "height" : 16
+      }, {
+        "top" : 265,
+        "left" : 31,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+        "width" : 35,
+        "height" : 16
+      }, {
+        "top" : 265,
+        "left" : 79,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+        "width" : 107,
+        "height" : 16
+      }, {
+        "top" : -2,
+        "left" : -2,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]",
+        "width" : 83,
+        "height" : 32
+      }, {
+        "top" : 72,
+        "left" : 41,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]",
+        "width" : 83,
+        "height" : 32
+      }, {
+        "top" : 107,
+        "left" : 41,
+        "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[3]",
+        "width" : 83,
+        "height" : 32
+      } ],
+      "fanIn" : 1,
+      "fanOut" : 2,
+      "id" : 0,
+      "failedEvents" : [ "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]", "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]" ]
+    }
+  },
+  "edges" : [ {
+    "from" : "index",
+    "to" : "state1",
+    "text" : "Dates",
+    "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+    "element" : "Element{node=[A: null], tag=A, text=Dates, attributes={name=dates, onclick=loadMenu('dates')}}",
+    "eventType" : "click"
+  }, {
+    "from" : "state1",
+    "to" : "index",
+    "text" : "Home",
+    "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+    "element" : "Element{node=[A: null], tag=A, text=Home, attributes={name=home, onclick=loadMenu('home')}}",
+    "eventType" : "click"
+  }, {
+    "from" : "index",
+    "to" : "state3",
+    "text" : "Accepted Papers",
+    "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+    "element" : "Element{node=[A: null], tag=A, text=Accepted Papers, attributes={name=papers, onclick=loadMenu('papers')}}",
+    "eventType" : "click"
+  }, {
+    "from" : "state1",
+    "to" : "state3",
+    "text" : "Accepted Papers",
+    "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+    "element" : "Element{node=[A: null], tag=A, text=Accepted Papers, attributes={name=papers, onclick=loadMenu('papers')}}",
+    "eventType" : "click"
+  } ],
+  "statistics" : {
+    "duration" : "21 seconds",
+    "crawlPaths" : 5,
+    "averageDomSize" : "0.987 kB",
+    "edges" : 4,
+    "startDate" : "2014-07-23 19:40:07 EDT",
+    "stateStats" : {
+      "leastFanOut" : {
+        "id" : "state3",
+        "count" : 0
+      },
+      "leastFanIn" : {
+        "id" : "state1",
+        "count" : 1
+      },
+      "mostFanOut" : {
+        "id" : "state1",
+        "count" : 2
+      },
+      "mostFanIn" : {
+        "id" : "state3",
+        "count" : 2
+      },
+      "totalNumberOfStates" : 3,
+      "urls" : {
+        "http://bear.cc.gatech.edu/conference/index.html" : [ "state3", "state1", "index" ]
+      }
+    },
+    "failedEvents" : 4
+  },
+  "exitStatus" : "EXHAUSTED"
+}

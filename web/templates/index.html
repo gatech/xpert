@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>X-PERT</title>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap-theme.min.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+
+      .form-modelgen {
+        max-width: 460px;
+        padding: 15px;
+        margin: 0 auto;
+      }
+
+      label{
+        font-size: 1.4em;
+      }
+    </style>
+
+  </head>
+  <body>
+
+    <div class="container">
+
+
+      <form class="form-modelgen" method="POST" action="/crawl">
+
+      <h2>X-PERT <small>Find Cross-browser Issues</small></h2>
+
+      <!-- URL -->
+      <div class="form-group">
+        <label for="url">URL</label>
+        <input id="url" name="url" type="text" placeholder="http://example.com" class="form-control  input-lg" required="">
+      </div>
+
+      <!-- Browsers -->
+      <div class="form-group">
+        <label for="browsers" class="control-label">Browsers</label>
+        <div style="padding-left:10px;">
+          <div>
+            <input type="checkbox" name="browser" id="browser-0" value="INTERNET_EXPLORER" checked>
+            Internet Explorer
+          </div>
+          <div>
+            <input type="checkbox" name="browser" id="browser-1" value="FIREFOX" checked>
+            Mozilla Firefox
+          </div>
+          <div>
+            <input type="checkbox" name="browser" id="browser-2" value="CHROME">
+            Google Chrome
+          </div>
+        </div>
+      </div>
+
+      <!-- Depth -->
+      <div class="form-group">
+        <label for="depth" class="control-label">Depth</label>
+        <div class="input-group">
+          <input id="depth" name="depth" class="form-control input-lg" value="2" type="text">
+          <div class="input-group-addon">
+            <button type="button" onclick="inc('#depth')"><span class="glyphicon glyphicon-chevron-up"></span></button>
+            <button type="button" onclick="dec('#depth')"><span class="glyphicon glyphicon-chevron-down"></span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Max States -->
+      <div class="form-group">
+        <label for="states" class="control-label">Max States</label>
+        <div class="input-group">
+          <input id="states" name="states" class="form-control input-lg" value="0" type="text">
+          <div class="input-group-addon">
+            <button type="button" onclick="inc('#states')"><span class="glyphicon glyphicon-chevron-up"></span></button>
+            <button type="button" onclick="dec('#states')"><span class="glyphicon glyphicon-chevron-down"></span></button>
+          </div>
+        </div>
+        <p class="help-block">0 = unlimited.</p>
+      </div>
+
+      <!-- Multiple Clicks -->
+      <div class="form-group">
+        <label for="click">Multiple Actions</label>
+        <div style="padding-left:10px;">
+          <div>
+            <input type="checkbox" name="click_once" id="click_once" value="true" checked>
+          Click Once?
+          </div>
+        </div>
+      </div>
+
+      <!-- Default Actions -->
+      <div class="form-group">
+        <label for="click">Default Actions</label>
+        <div style="padding-left:10px;">
+          <div>
+            <input type="checkbox" name="click" id="click-0" value="A" checked>
+            Links &lt; A &gt;
+          </div>
+          <div>
+            <input type="checkbox" name="click" id="click-1" value="BUTTON" checked>
+            Buttons &lt; button &gt; <!--, &lt; input type="submit"&gt;-->
+          </div>
+          <!--div>
+            <input type="checkbox" name="click" id="click-2" value="Images &lt; img &gt;">
+            Images &lt; img &gt;
+          </div-->
+        </div>
+      </div>
+
+
+
+      <!-- Custom Actions -->
+      <div class="form-group">
+        <label for="custom_widget" class="control-label">Custom Actions <button id="addCustom" name="addCustom" type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-plus"></span></button></label>
+
+        <div id="custom">
+        <!--           <div class="input-group">
+                  <input id="custom_widget" name="custom_widget" class="form-control input-lg" placeholder="widget selector (e.g. id=&quot;foo&quot;)" type="text">
+                  <div class="input-group-addon">
+                    <select class="input-sm" name="custom_action">
+                      <option>Click</option>
+                      <option>Don't Click</option>
+                    </select>
+                  </div>
+                </div> -->
+        </div>
+      </div>
+
+      <!-- Oracle Comparators -->
+      <div class="form-group">
+        <label for="click">Ignore the following</label>
+        <div style="padding-left:10px;">
+          <div>
+            <input type="checkbox" name="ignore_style" id="ignore_style"> &lt;STYLE&gt; Tags
+          </div>
+          <div>
+            <input type="checkbox" name="ignore_script" id="ignore_script"> &lt;SCRIPT&gt; Tags
+          </div>
+        </div>
+      </div>
+
+
+      <!-- Button -->
+      <div class="form-group">
+          <button id="submit" name="submit" class="btn btn-primary btn-lg btn-block">Detect XBIs</button>
+      </div>
+
+      </form>
+
+
+    </div>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script>
+
+      function appendRow(){
+        $("#custom").append('<div class="input-group">'+
+                  '<input id="custom_widget" name="custom_widget" class="form-control input-lg" placeholder="widget (e.g. IMG)" type="text">'+
+                  '<div class="input-group-addon">'+
+                    '<select class="input-sm" name="custom_action">'+
+                      '<option value="1">Click</option>'+
+                      '<option value="0">Don\'t Click</option>'+
+                      '<option value="-1">Don\'t Click Children</option>'+
+                    '</select>'+
+                  '</div>'+
+                '</div>');
+      }
+      appendRow();
+
+      $("#addCustom").on('click', function () {
+        appendRow();
+      });
+
+      function inc(e) {
+        $(e).val(parseInt($(e).val()) + 1);
+      }
+
+      function dec(e) {
+        var v = parseInt($(e).val());
+        if(v > 0) {
+          $(e).val(v - 1);
+        }
+      }
+
+    </script>
+  </body>
+</html>

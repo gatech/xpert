@@ -1,0 +1,8 @@
+Running Crawler for Job "e45d25ed84ea454ea3f8b0c56fe251ca" and Browser "INTERNET_EXPLORER"
+Z:\xpert\web\out\e45d25ed84ea454ea3f8b0c56fe251ca\INTERNET_EXPLORER
+Started InternetExplorerDriver server (64-bit)
+2.42.0.0
+Listening on port 43915
+19:40:16.551 [main] WARN  - Weird positioning (-2, -2) for /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]
+19:40:22.282 [pool-1-thread-2] WARN  - Weird positioning (-2, -2) for /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]
+^C

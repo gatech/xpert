@@ -1,0 +1,19 @@
+<HTML><HEAD><TITLE>Conference</TITLE>
+<SCRIPT type=text/javascript src="script.js"></SCRIPT>
+<LINK rel=stylesheet type=text/css href="style.css"></HEAD>
+<BODY onload="loadMenu('home')">
+<DIV class=box>
+<H1>CONFERENCE</H1>
+<DIV class=menu><IMG id=home onclick=listItems(event) name=home src="home.png"> <IMG id=dates onclick=listItems(event) name=dates src="dates.png"> <IMG style="DISPLAY: none" id=papers onclick=listItems(event) name=papers src="papers.png"> </DIV>
+<HR>
+
+<DIV id=detail>
+<H3>Accepted Papers</H3><SPAN id=stats>undefined papers accepted!</SPAN>
+<UL id=items>
+<LI>Paper Title, Author</LI>
+<LI>Título del artículo, Autor</LI>
+<LI>Titolo della carta, Autore</LI>
+<LI>Titre de l'article, Auteur</LI></UL></DIV>
+<HR>
+
+<DIV class=footer><A onclick="loadMenu('home')" name=home>Home</A> <A onclick="loadMenu('dates')" name=dates>Dates</A> <A style="DISPLAY: none" onclick="loadMenu('papers')" name=papers>Accepted Papers</A> </DIV></DIV></BODY></HTML>

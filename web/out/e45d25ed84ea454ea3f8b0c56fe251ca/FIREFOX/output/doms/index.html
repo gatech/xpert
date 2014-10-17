@@ -1,0 +1,25 @@
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+    <title>Conference</title>
+    <script type="text/javascript" src="script.js"></script>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body onload="loadMenu('home')">
+	<div class="box">
+    <h1>CONFERENCE</h1>
+	<div class="menu">
+	  <img style="display:none" id="home" name="home" onclick="listItems(event)" src="home.png" />
+      <img id="dates" name="dates" onclick="listItems(event)" src="dates.png" />
+      <img id="papers" name="papers" onclick="listItems(event)" src="papers.png" />
+	</div>
+  <hr />
+  <div id="detail"><h3>Conference Venue</h3>Hotel Name - City<br />Address Line 1<br />City, State, Zipcode</div>
+  <hr />
+	<div class="footer">
+		<a name="home" onclick="loadMenu('home')" style="display: none;">Home</a> 
+		<a name="dates" onclick="loadMenu('dates')">Dates</a> 
+		<a name="papers" onclick="loadMenu('papers')">Accepted Papers</a>
+	</div>
+    </div>
+  
+
+</body></html>

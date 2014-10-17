@@ -1,0 +1,4 @@
+"MISSING-TRANSITION","(Edge [from=index, to=state3, text=])","(null)"
+"MISSING-TRANSITION","(Edge [from=index, to=state1, text=])","(null)"
+"MISSING-TRANSITION","(Edge [from=state1, to=state3, text=])","(null)"
+"MISSING-TRANSITION","(Edge [from=state1, to=index, text=])","(null)"

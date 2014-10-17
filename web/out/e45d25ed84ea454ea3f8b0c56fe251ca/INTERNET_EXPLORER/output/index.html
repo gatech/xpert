@@ -1,0 +1,634 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Crawl overview</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="CrawlJax">
+<link href="./css/bootstrap.min.css" rel="stylesheet">
+<link href="./css/bootstrap-responsive.min.css" rel="stylesheet">
+<!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+<style>
+html,body {
+	height: 100%;
+}
+
+#wrap {
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	margin: 0 auto -40px;	
+}
+
+#push, footer {
+	height: 40px;
+}
+
+footer {
+	background-color: #f5f5f5;
+}
+
+footer small {
+	display: inline;
+	margin-top: 10px;
+}
+
+.url-table td {
+	word-wrap: break-word;
+	max-width: 700px;
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+	.url-table td {
+		max-width: 500px;
+	}
+}
+
+@media ( max-width : 767px) {
+	#footer {
+		margin-left: -20px;
+		margin-right: -20px;
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+	
+	.url-table td {
+		max-width: 450px;
+	}
+}
+
+
+#wrap>.container {
+	padding-top: 60px;
+}
+
+.panel-right {
+	position: absolute;
+	right: 10px;
+	top: 70px;
+	left: auto;
+	display: block;
+	background-color: rgb(255, 255, 255);
+	background-color: rgba(255, 255, 255, .9);
+	max-width: 300px;
+}
+
+.panel-right dd {
+	text-transform: capitalize;
+	word-wrap: break-word;
+}
+</style>
+</head>
+<body>
+<body>
+	<div id="wrap">
+		<nav class="navbar navbar-fixed-top">
+	<div class="navbar-inner">
+		<div class="container">
+							<a class="brand" href="#">Crawl overview</a>
+						<ul class="nav">
+									<li class="active"><a href="#graph">State graph</a></li>
+					<li><a href="#statistics">Statistics</a></li>
+					<li><a href="#urls">URL's</a></li>
+					<li><a href="#config">Configuration</a></li>
+							</ul>
+			<div class="nav pull-right">
+				<a href="#" class="btn graphBtn" id='pauseButton' data-toggle="tooltip" data-placement="bottom" title="Pause the graph movement"><i class="icon-pause"></i></a>
+				<a href="#" class="btn graphBtn" rel="popover" data-placement="bottom"  data-original-title="What to do"><i class='icon-question-sign'></i></a>
+				<div style="display: none" id='popup-content'>
+					<p>You can double click a state to inspect it further.</p>
+					<p>Clicking an edge gives more details on the state transition.</p>
+					<p>Use your mouse to zoom in and out by scrolling, or drag the states and view around.</p>
+				</div>
+				<a href="result.json" class="btn" data-toggle="tooltip" data-placement="bottom" title="Download result as JSON"><i class='icon-download'></i></a>
+			</div>
+			<!--/.nav-collapse -->
+		</div>
+	</div>
+</nav>		<div class="container page" id="container-graph" style="width: 100%; padding-top: 40px;">
+			<div class="popover fade panel-right">
+				<div class="popover-inner">
+					<h3 class="popover-title">Edge info</h3>
+					<div class="popover-content">
+						<dl>
+							<dt>Element name</dt>
+							<dd name='elemName'></dd>
+						</dl>
+						<dl>
+							<dt>From</dt>
+							<dd name='from'></dd>
+						</dl>
+						<dl>
+							<dt>To</dt>
+							<dd name='to'></dd>
+						</dl>
+						<dl>
+							<dt>Identified by</dt>
+							<dd name='id'></dd>
+						</dl>
+						<dl>
+							<dt>Element</dt>
+							<dd name='element' style="text-transform: none;"></dd>
+						</dl>
+						<dl>
+							<dt>Event type</dt>
+							<dd name='eventType'></dd>
+						</dl>
+						<button class="btn btn-small" id='hideButton'>Hide</button>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="container page" id="container-statistics" style="display: none;">
+			
+<section id='crawlResults'>
+	<div class="page-header">
+		<h1>Crawl results</h1>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tbody>
+			<tr>
+				<th>Crawl time</th>
+				<td>21 seconds</td>
+			</tr>
+			<tr>
+				<th>Exit status</th>
+				<td>Exausted</td>
+			<tr>
+				<th>Number of states</th>
+				<td>3</td>
+			</tr>
+			<tr>
+				<th><a href="urls.html">URL's visited</a></th>
+				<td>1</td>
+			</tr>
+			<tr>
+				<th>Number of edges</th>
+				<td>4</td>
+			</tr>
+			<tr>
+				<th>Number of crawl paths</th>
+				<td>5</td>
+			</tr>
+			<tr>
+				<th>Failed events</th>
+				<td>4</td>
+			<tr>
+				<th>Average DOM length</th>
+				<td>0.987 kB</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+
+<section id='highs-and-low'>
+	<div class="page-header">
+		<h1>Highs and lows</h1>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tbody>
+			<tr>
+				<th>Highest fan-out</th> 
+								<td><a href="states/state1.html">state1</a></td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<th>Lowest fan-out</th> 				<td><a href="states/state3.html">state3</a></td>
+				<td>0</td>
+			</tr>
+			<tr>
+				<th>Highest fan-in</th> 				<td><a href="states/state3.html">state3</a></td>
+				<td>2</td>
+			</tr>
+			<tr>
+				<th>Lowest fan-in</th> 				<td><a href="states/state1.html">state1</a></td>
+				<td>1</td>
+			</tr>
+		</tbody>
+	</table>
+</section>
+		</div>
+		<div class="container page" id="container-urls" style="display: none;">
+			<div class="page-header">
+	<h1>URL's visited</h1>
+</div>
+<table class="table table-bordered table-striped url-table">
+	<tbody>
+				<tr>
+			<td><a href="http://bear.cc.gatech.edu/conference/index.html">http://bear.cc.gatech.edu/conference/index.html</a></td>
+			<td> <a
+				href="states/state3.html">state3</a>,  <a
+				href="states/state1.html">state1</a>,  <a
+				href="states/index.html">index</a>, 			</td>
+		</tr>
+			</tbody>
+</table>
+		</div>
+		<div class="container page" id="container-config" style="display: none;">
+			<section id='crawlConfig'>
+	<div class="page-header">
+		<h1>Crawl configuration</h1>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tbody>
+						<tr>
+				<td>Browser Config</td> 
+								<td>1 browsers of type INTERNET_EXPLORER using builder Default webdriver factory</td> 
+							</tr>
+						<tr>
+				<td>Proxy Configuration</td> 
+								<td>NOTHING</td> 
+							</tr>
+						<tr>
+				<td>Maximum States</td> 
+								<td>10</td> 
+							</tr>
+						<tr>
+				<td>Maximum Runtime</td> 
+								<td>3600000</td> 
+							</tr>
+						<tr>
+				<td>Maximum Depth</td> 
+								<td>2</td> 
+							</tr>
+						<tr>
+				<td>State Vertex Factory</td> 
+								<td>null</td> 
+							</tr>
+						<tr>
+				<td>Url</td> 
+								<td>http://bear.cc.gatech.edu/conference/index.html</td> 
+							</tr>
+						<tr>
+				<td>Plugins</td> 
+								<td><ul><li>CrawlOverview</li></ul></td> 
+							</tr>
+						<tr>
+				<td>Crawl Rules</td> 
+								<td><pre><code>{
+  &quot;crawlEvents&quot; : [ &quot;click&quot; ],
+  &quot;invariants&quot; : [ ],
+  &quot;oracleComparators&quot; : [ {
+    &quot;preConditions&quot; : [ ],
+    &quot;id&quot; : &quot;style-attr-ignore&quot;,
+    &quot;oracle&quot; : { }
+  }, {
+    &quot;preConditions&quot; : [ ],
+    &quot;id&quot; : &quot;style-ignore&quot;,
+    &quot;oracle&quot; : { }
+  }, {
+    &quot;preConditions&quot; : [ ],
+    &quot;id&quot; : &quot;script-ignore&quot;,
+    &quot;oracle&quot; : { }
+  } ],
+  &quot;ignoredFrameIdentifiers&quot; : [ ],
+  &quot;preCrawlConfig&quot; : {
+    &quot;waitConditions&quot; : [ ],
+    &quot;crawlConditions&quot; : [ ],
+    &quot;includedElements&quot; : [ {
+      &quot;tagName&quot; : &quot;A&quot;,
+      &quot;id&quot; : &quot;id601016216&quot;,
+      &quot;eventType&quot; : &quot;click&quot;,
+      &quot;eventableCondition&quot; : null,
+      &quot;withXpathExpression&quot; : null
+    }, {
+      &quot;tagName&quot; : &quot;BUTTON&quot;,
+      &quot;id&quot; : &quot;id1663950471&quot;,
+      &quot;eventType&quot; : &quot;click&quot;,
+      &quot;eventableCondition&quot; : null,
+      &quot;withXpathExpression&quot; : null
+    }, {
+      &quot;tagName&quot; : &quot;IMG&quot;,
+      &quot;id&quot; : &quot;id1483514863&quot;,
+      &quot;eventType&quot; : &quot;click&quot;,
+      &quot;eventableCondition&quot; : null,
+      &quot;withXpathExpression&quot; : null
+    } ],
+    &quot;excludedElements&quot; : [ ],
+    &quot;filterAttributeNames&quot; : [ &quot;closure_hashcode_(\\w)*&quot;, &quot;jquery[0-9]+&quot; ]
+  },
+  &quot;randomInputInForms&quot; : true,
+  &quot;inputSpecification&quot; : {
+    &quot;crawlElements&quot; : [ ],
+    &quot;formFieldNames&quot; : { },
+    &quot;formFieldValues&quot; : { }
+  },
+  &quot;testInvariantsWhileCrawling&quot; : true,
+  &quot;clickOnce&quot; : false,
+  &quot;randomizeCandidateElements&quot; : false,
+  &quot;crawlHiddenAnchors&quot; : false,
+  &quot;waitAfterReloadUrl&quot; : 500,
+  &quot;waitAfterEvent&quot; : 500,
+  &quot;allCrawlElements&quot; : [ {
+    &quot;tagName&quot; : &quot;A&quot;,
+    &quot;id&quot; : &quot;id601016216&quot;,
+    &quot;eventType&quot; : &quot;click&quot;,
+    &quot;eventableCondition&quot; : null,
+    &quot;withXpathExpression&quot; : null
+  }, {
+    &quot;tagName&quot; : &quot;BUTTON&quot;,
+    &quot;id&quot; : &quot;id1663950471&quot;,
+    &quot;eventType&quot; : &quot;click&quot;,
+    &quot;eventableCondition&quot; : null,
+    &quot;withXpathExpression&quot; : null
+  }, {
+    &quot;tagName&quot; : &quot;IMG&quot;,
+    &quot;id&quot; : &quot;id1483514863&quot;,
+    &quot;eventType&quot; : &quot;click&quot;,
+    &quot;eventableCondition&quot; : null,
+    &quot;withXpathExpression&quot; : null
+  } ]
+}</code></pre></td> 
+							</tr>
+						<tr>
+				<td>Output Dir</td> 
+								<td>.\output</td> 
+							</tr>
+					</tbody>
+	</table>
+</section>
+<section id='versionInfo'>
+	<div class="page-header">
+		<h1>Version info</h1>
+	</div>
+	<table class="table table-bordered table-striped">
+		<tbody>
+			<tr>
+				<td>Crawljax version</td>
+				<td>3.6-SNAPSHOT</td>
+			</tr>
+			<tr>
+				<td>Git revision</td>
+				<td>4a28371d33d9939ef224dad2e19a77a7b6256b06</td>
+			</tr>
+			<tr>
+				<td><a href="https://www.kernel.org/pub/software/scm/git/docs/git-describe.html">Git describe</a></td>
+				<td>crawljax-3.5.1-10-g4a28371-dirty</td>
+			</tr>
+			<tr>
+				<td>Build time</td>
+				<td><time>2014-07-21 11:26:46 EDT</time></td>
+			</tr>
+		</tbody>
+	</table>
+</section>		</div>
+		<div id="push"></div>
+	</div>
+	<footer>
+		<div class="container">
+			<small class="pull-left muted">Crawl of <a href="http://bear.cc.gatech.edu/conference/index.html">http://bear.cc.gatech.edu/conference/index.html</a> at Wed Jul 23 19:40:07 EDT 2014</small>
+			<small class="pull-right muted">Crawled by <a href="http://crawljax.com">Crawljax</a> 3.6-SNAPSHOT</small>
+		</div>
+	</footer>
+	
+	<script src="lib/jquery-2.0.3.min.js"></script>
+	<script src="lib/bootstrap.min.js"></script>
+	<script src="lib/vivagraph.min.js"></script>
+	<script src="js/graphbuilder.js"></script>
+	<script>
+		var edges = [ {
+  "from" : "index",
+  "to" : "state1",
+  "text" : "Dates",
+  "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+  "element" : "Element{node=[A: null], tag=A, text=Dates, attributes={name=dates, onclick=loadMenu('dates')}}",
+  "eventType" : "click"
+}, {
+  "from" : "state1",
+  "to" : "index",
+  "text" : "Home",
+  "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+  "element" : "Element{node=[A: null], tag=A, text=Home, attributes={name=home, onclick=loadMenu('home')}}",
+  "eventType" : "click"
+}, {
+  "from" : "index",
+  "to" : "state3",
+  "text" : "Accepted Papers",
+  "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+  "element" : "Element{node=[A: null], tag=A, text=Accepted Papers, attributes={name=papers, onclick=loadMenu('papers')}}",
+  "eventType" : "click"
+}, {
+  "from" : "state1",
+  "to" : "state3",
+  "text" : "Accepted Papers",
+  "id" : "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+  "element" : "Element{node=[A: null], tag=A, text=Accepted Papers, attributes={name=papers, onclick=loadMenu('papers')}}",
+  "eventType" : "click"
+} ];
+		var states = {
+  "state3" : {
+    "name" : "state3",
+    "url" : "http://bear.cc.gatech.edu/conference/index.html",
+    "candidateElements" : [ ],
+    "fanIn" : 2,
+    "fanOut" : 0,
+    "id" : 3,
+    "failedEvents" : [ ]
+  },
+  "state1" : {
+    "name" : "state1",
+    "url" : "http://bear.cc.gatech.edu/conference/index.html",
+    "candidateElements" : [ {
+      "top" : 265,
+      "left" : 31,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+      "width" : 37,
+      "height" : 16
+    }, {
+      "top" : 16,
+      "left" : 11,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+      "width" : 35,
+      "height" : 16
+    }, {
+      "top" : 265,
+      "left" : 84,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+      "width" : 107,
+      "height" : 16
+    }, {
+      "top" : 72,
+      "left" : 41,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]",
+      "width" : 83,
+      "height" : 32
+    }, {
+      "top" : -2,
+      "left" : -2,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]",
+      "width" : 83,
+      "height" : 32
+    }, {
+      "top" : 107,
+      "left" : 41,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[3]",
+      "width" : 83,
+      "height" : 32
+    } ],
+    "fanIn" : 1,
+    "fanOut" : 2,
+    "id" : 1,
+    "failedEvents" : [ "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]", "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]" ]
+  },
+  "index" : {
+    "name" : "index",
+    "url" : "http://bear.cc.gatech.edu/conference/index.html",
+    "candidateElements" : [ {
+      "top" : 16,
+      "left" : 11,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]",
+      "width" : 37,
+      "height" : 16
+    }, {
+      "top" : 265,
+      "left" : 31,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[2]",
+      "width" : 35,
+      "height" : 16
+    }, {
+      "top" : 265,
+      "left" : 79,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[3]",
+      "width" : 107,
+      "height" : 16
+    }, {
+      "top" : -2,
+      "left" : -2,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]",
+      "width" : 83,
+      "height" : 32
+    }, {
+      "top" : 72,
+      "left" : 41,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[2]",
+      "width" : 83,
+      "height" : 32
+    }, {
+      "top" : 107,
+      "left" : 41,
+      "xpath" : "/HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[3]",
+      "width" : 83,
+      "height" : 32
+    } ],
+    "fanIn" : 1,
+    "fanOut" : 2,
+    "id" : 0,
+    "failedEvents" : [ "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[3]/A[1]", "xpath /HTML[1]/BODY[1]/DIV[1]/DIV[1]/IMG[1]" ]
+  }
+};
+		$(document).ready(
+				function() {
+					$.each(states, function() {
+						graph.addNode(this.name, {
+							img : 'screenshots/' + this.name + '_small.jpg',
+							url : "states/" + this.name + ".html"
+						});
+					});
+
+					var edgesSeen = {};
+					$.each(edges, function() {
+						var edgeKey = this.from + "-to-" + this.to;
+						if (!(edgeKey in edgesSeen)) {
+							edgesSeen[edgeKey] = true;
+							graph.addLink(this.from, this.to, {
+								text : this.text,
+								id : this.id,
+								eventType : this.eventType,
+								element : this.element
+
+							});
+						}
+					});
+
+					$("#hideButton").click(function() {
+						$(".panel-right").removeClass("in");
+						$('path[stroke="red"]').attr("stroke", "grey");
+					});
+
+					$("a[rel='popover']").popover({
+						content : $("#popup-content").html(),
+						html : true,
+						trigger : "hover"
+					});
+
+					$("a[data-toggle='tooltip']").tooltip();
+
+					var paused = false;
+					$("#pauseButton").click(
+							function() {
+								if (paused) {
+									renderer.resume();
+									paused = false;
+									$(this).children(":first").attr("class",
+											"icon-pause");
+								} else {
+									renderer.pause();
+									paused = true;
+									$(this).children(":first").attr("class",
+											"icon-play");
+								}
+							});
+
+					$('.navbar li').click(function(e) {
+						$('.navbar li').removeClass('active');
+						var $this = $(this);
+						if (!$this.hasClass('active')) {
+							$this.addClass('active');
+						}
+
+					});
+
+					function loadPage(page) {
+						$('.page').hide();
+						$('#container-' + page).show();
+
+						if (page === "graph") {
+							$('.graphBtn').show();
+						} else {
+							$('.graphBtn').hide();
+						}
+					}
+
+					$(window).on(
+							'hashchange',
+							function(e) {
+								pageRef = window.location.hash.substring(1);
+								if ($("#container-" + pageRef).length == 0
+										&& pageRef !== "graph") {
+									window.location.hash = "graph";
+								} else {
+									loadPage(pageRef);
+								}
+							});
+
+					$(window).trigger('hashchange');
+				});
+
+		function showInfo(link) {
+			$(".panel-right").addClass("in");
+			$(".panel-right [name='elemName']").text(link.data.text);
+			$(".panel-right [name='from']").html(asStateLink(link.fromId));
+			$(".panel-right [name='to']").html(asStateLink(link.toId));
+			$(".panel-right [name='id']").text(link.data.id);
+			$(".panel-right [name='element']").text(link.data.element);
+			$(".panel-right [name='eventType']").text(link.data.eventType);
+		}
+
+		function asStateLink(name) {
+			return "<a href='states/" + name + ".html' target='_new'>" + name
+					+ "</a>";
+		}
+
+		$('#container-graph svg').css("width", "100%");
+		function resize() {
+			$('#container-graph').css("height", window.innerHeight - 80);
+			$('#container-graph svg').css("height", window.innerHeight - 80);
+		}
+		$(window).resize(resize);
+		resize();
+	</script>
+</body>
+</html>
