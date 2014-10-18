@@ -1,7 +1,6 @@
-xpert
+X-PERT: Cross-Platform Error ReporTer
 =====
 
-Cross-Platform Error ReporTer
 
 This tool is the open source implementation for our X-PERT paper
 Note that this is a rewrite of the original tool due to licensing terms with Fujitsu Labs of America. 
@@ -17,7 +16,7 @@ Here are some differences:
 ```
 pip install gevent flask
 ```
-If you don't have pip, [see pip install here](https://pip.pypa.io/en/latest/installing.html)
+If you don't have pip, see installation instructions [here](https://pip.pypa.io/en/latest/installing.html)
 
 ### Configure VM or make suitable changes
 The web app assumes that you are running a Windows virtual machine using VMWare and runs the crawler inside the VM.
@@ -49,7 +48,7 @@ java -cp xpert.jar edu.gatech.xpert.XpertMain <output_dir> <browser1> <browser2>
 `browser1` and `browser2` are names of the two browsers against which X-PERT checks for XBIs in an application
 
 The web front-end creates an output folder for each crawl performed with a random 32char alphanumeric name. 
-See example [job folder](https://github.com/gatech/xpert/tree/master/web/out/e45d25ed84ea454ea3f8b0c56fe251ca)
+See example [output directory](https://github.com/gatech/xpert/tree/master/web/out/e45d25ed84ea454ea3f8b0c56fe251ca)
 
 
 # Troubleshooting
