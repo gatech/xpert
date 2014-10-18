@@ -2,7 +2,7 @@ X-PERT: Cross-Platform Error ReporTer
 =====
 
 
-This tool is the open source implementation for our X-PERT paper
+This tool is the open source implementation for our X-PERT paper.
 Note that this is a rewrite of the original tool due to licensing terms with Fujitsu Labs of America. 
 
 Here are some differences:
@@ -45,7 +45,7 @@ The web front-end generates a suitable CrawlDriver based on the information prov
 java -cp xpert.jar edu.gatech.xpert.XpertMain <output_dir> <browser1> <browser2>
 ```
 `output_dir` refers to the folder in which the crawled data is saved.
-`browser1` and `browser2` are names of the two browsers against which X-PERT checks for XBIs in an application
+`browser1` and `browser2` are names of the two browsers against which X-PERT checks for XBIs in an application. Valid browser values supported by Crawljax are CHROME, FIREFOX and INTERNET_EXPLORER
 
 The web front-end creates an output folder for each crawl performed with a random 32char alphanumeric name. 
 See example [output directory](https://github.com/gatech/xpert/tree/master/web/out/e45d25ed84ea454ea3f8b0c56fe251ca)
