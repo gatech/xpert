@@ -2,7 +2,11 @@ X-PERT: Cross-Platform Error ReporTer
 =====
 
 ```
-Notice: This is a academic, open-source reimplementation of the X-PERT paper and is copyright of Georgia Institute of Technology and has been released under MIT License. Fujitsu Labs of America has the patents to protect commercial interests of this line of research.
+Notice: This is a academic, open-source reimplementation of the X-PERT paper 
+and is copyright of Georgia Institute of Technology and has been released 
+under MIT License. Fujitsu Labs of America has the patents to protect 
+commercial interests in this line of research. The rewrite was necessary to
+respect the agreement between Georgia Tech and Fujitsu Labs.
 ````
 
 Here are some differences from the original version of X-PERT:
